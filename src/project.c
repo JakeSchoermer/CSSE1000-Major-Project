@@ -1,0 +1,176 @@
+/*
+** project.c - main file 
+**
+** Original version by Peter Sutton
+*/
+
+#include "game.h"
+#include "joystick.h"
+#include "led_display.h"
+#include "score.h"
+#include "timer2.h"
+#include "scrolling_char_display.h"
+#include <avr/io.h>
+#include <avr/interrupt.h>
+
+/*
+** Function prototypes - these are defined below main()
+*/
+void initialise_hardware(void);
+void splash_screen(void);
+void new_game(void);
+void handle_game_over(void);
+
+/*
+ * main -- Main program.
+ */
+int main(void) {
+	/* Flag to keep track of whether the game field changes or.
+	** We use this to know whether we must redraw the dispaly
+	** or not.
+	*/
+	uint8_t gameFieldUpdated = 0;
+
+	/* Keep track of the previous joystick values - so we know
+	** whether the joystick (X position or buttons) have changed
+	** or not.
+	*/
+	int8_t prevJoystickX;
+	uint8_t prevJoystickButtons;
+	uint32_t currentTime;				/* clock ticks */
+	uint32_t displayLastUpdatedTime = 0;	/* clock ticks */
+	uint32_t joystickLastCheckedTime = 0;	/* clock ticks */
+	uint32_t projectilesLastAdvancedTime = 0; /* clock ticks */
+	
+	initialise_hardware();
+
+	/* Show the splash screen message. This returns when 
+	** message display is complete. */
+	splash_screen();
+	
+	/* Perform necessary initialisations for a new game. */
+	new_game();
+		
+	/*
+	** Event loop. We wait for various times to be reached
+	** to take actions (e.g. advancing projectiles up the 
+	** screen.) We monitor various button values to check
+	** whether they have changed.
+	*/
+	prevJoystickX = 0;
+	prevJoystickButtons = 0;
+	while(1) {
+		currentTime = get_clock_ticks();
+		if(currentTime >= projectilesLastAdvancedTime + 1000) {
+			/* Advance any projectiles every 1000ms. */
+			gameFieldUpdated |= advance_projectiles();
+			projectilesLastAdvancedTime = currentTime;
+		}
+
+		/* Check clock tick value and take action if necessary */
+		
+		if(currentTime >= displayLastUpdatedTime + 2) {
+			/* Update LED display every 2ms - i.e. show a different row */
+			display_row();
+			displayLastUpdatedTime = currentTime;
+		}
+
+		if(currentTime >= joystickLastCheckedTime + 4) {
+			/* Check the joystick every 4ms */
+			joystick_update();
+			joystickLastCheckedTime = currentTime;
+		}
+
+		if(prevJoystickX != joystickX) {
+			/* Joystick has moved left or right */
+			if(prevJoystickX >= 0 && joystickX < 0) {
+				/* Joystick has moved left */ 
+				gameFieldUpdated |= move_base(MOVE_LEFT);
+			}
+			if(prevJoystickX <= 0 && joystickX > 0) {
+				gameFieldUpdated |= move_base(MOVE_RIGHT);
+			}
+			/* Update our record of the previous Joystick value */
+			prevJoystickX = joystickX;
+		}
+		if(prevJoystickButtons != joystickButtons) {
+			/* A joystick button has been pressed or released */
+			if(BUTTON_1_PRESSED(joystickButtons) && 
+					!BUTTON_1_PRESSED(prevJoystickButtons)) {
+				/* Button one has been pressed */
+				gameFieldUpdated = fire_projectile();
+			}
+			prevJoystickButtons = joystickButtons;
+		}
+		if(gameFieldUpdated) {
+			/* 
+			** Update display of board since its appearance has changed.
+			*/
+			copy_game_field_to_led_display();
+			gameFieldUpdated = 0;
+		}
+	}
+}
+
+void initialise_hardware(void) {
+	/* Initialise hardware modules (interrupts, data direction
+	** registers etc. This should only need to be done once.
+	*/
+
+	/* Initialise the LED board display */
+	init_display();
+
+	/* Initialise communication with the Joystick */
+	init_joystick();
+
+	/* Initialise the timer which gives us clock ticks
+	** to time things by.
+	*/
+	init_timer2();
+	
+	/*
+	** Turn on interrupts (needed for timer to work)
+	*/
+	sei();
+}
+
+void splash_screen(void) 
+{
+	uint32_t currentTime;
+	uint32_t displayLastUpdatedTime = 0;
+	uint32_t displayLastScrolledTime = 0;
+
+	/* This is the text we'll scroll on the LED display. */
+	set_display_text("CSSE1000 Project");
+
+	/* We scroll the message until the display is blank */
+	while(1) {
+		currentTime = get_clock_ticks();
+		
+		if(currentTime >= displayLastUpdatedTime + 2) {
+			/* Update LED display every 2ms - i.e. show a different row */
+			display_row();
+			displayLastUpdatedTime = currentTime;
+		}
+
+		if(currentTime >= displayLastScrolledTime + 150) {
+			/* Scroll our message every 150ms. Exit the loop
+			** if finished.
+			*/
+			if(!scroll_display()) {
+				break;
+			}
+			displayLastScrolledTime = currentTime;
+		}
+	}		
+}
+
+void new_game(void) 
+{
+	/* 
+	** Initialise the game field and the screen
+	*/
+	init_game_field();
+	copy_game_field_to_led_display();
+	init_score();
+}
