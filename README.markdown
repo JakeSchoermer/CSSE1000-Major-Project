@@ -12,4 +12,4 @@ All other documentation can be found in the doc folder.
 
 ##Implementation
 
-Feature Implementation is tracked via the [FEATURE_IMPLEMENTATION.markdown file](src/FEATURE_IMPLEMENTATION.markdown).
+Feature Implementation is tracked via the [FEATURE_IMPLEMENTATION.markdown file](src/tree/master/FEATURE_IMPLEMENTATION.markdown).
