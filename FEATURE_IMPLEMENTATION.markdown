@@ -1,7 +1,17 @@
+<style>
+
+	table td{
+		border-width:1px;
+		border-color:#FFFFFF;
+	}
+	
+</style>
+
+
 #Comments File
 #### This file is designed to help track the implementation of features on the project.
 
-<table border='1'>
+<table>
 	<thead>
 		<th>Feature</th>
 		<th>Implemented in Code </th>
@@ -10,7 +20,7 @@
 	<thead>
 	<tbody>
 		<tr>
-			<th COLSPAN='4'>Level 1<th>
+			<th COLSPAN='3'>Level 1<th>
 		</tr>
 		<tr>
 			<th>Splash Screen</th>
@@ -43,7 +53,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<th COLSPAN='4'>Level 1 (Group Feature)<th>
+			<th COLSPAN='3'>Level 1 (Group Feature)<th>
 		</tr>
 		<tr>
 			<th>Start New Game</th>
