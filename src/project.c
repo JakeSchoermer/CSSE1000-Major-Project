@@ -141,7 +141,7 @@ void splash_screen(void)
 	uint32_t displayLastScrolledTime = 0;
 
 	/* This is the text we'll scroll on the LED display. */
-	set_display_text("CSSE1000 Project");
+	set_display_text("Jake Schoermer s4233158 Sam Pengilly s12345678");
 
 	/* We scroll the message until the display is blank */
 	while(1) {
