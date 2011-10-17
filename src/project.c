@@ -10,6 +10,7 @@
 #include "score.h"
 #include "timer2.h"
 #include "scrolling_char_display.h"
+#include "sseg_display.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
