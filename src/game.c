@@ -236,6 +236,13 @@ int8_t advance_projectiles(void) {
 			projectiles[projectileIndex] = (x<<4)|y;
 			/* Move on to the next projectile */
 			projectileIndex++;
+
+			
+			if (projectileIndex == asteroid_at(0, 4)) {
+				remove_projectile(projectileIndex);
+			}
+
+
 		} else {
 			/* Projectile has reached the top - remove it. */
 			remove_projectile(projectileIndex);

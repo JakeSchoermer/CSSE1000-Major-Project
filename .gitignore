@@ -1,0 +1,6 @@
+#Add any files, folders or extensions that you want to keep out of version control.
+
+.DS_STORE	#Macs Generate this, they ALWAYS end up in version control
+src/default #ignore the compiled folder in AVR Studio
+src/default/*
+*.hex
