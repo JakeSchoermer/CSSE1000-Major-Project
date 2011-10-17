@@ -178,14 +178,18 @@ void copy_game_field_to_led_display(void) {
 */
 int8_t move_base(int8_t direction) {	
 	/* YOUR CODE HERE - FIX THIS FUNCTION */
+	
+	if (basePosition < 0 && direction == MOVE_LEFT) {
+		basePosition--;
+		return 1;
+	}
 
-	/* The initial version of this function just moves
-	** the base one position to the left, no matter where
-	** the base station is now or what the direction argument
-	** is.
-	*/
-	basePosition--;
-	return 1;
+	else if (basePosition < 7 && direction == MOVE_RIGHT) {
+		basePosition++;
+		return 1;
+	}
+
+	return 0;
 }
 
 /*
