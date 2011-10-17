@@ -10,7 +10,7 @@
 	<thead>
 	<tbody>
 		<tr>
-			<th COLSPAN='3'>Level 1<th>
+			<th COLSPAN='4'>Level 1<th>
 		</tr>
 		<tr>
 			<th>Splash Screen</th>
@@ -43,7 +43,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<th COLSPAN='3'>Level 1 (Group Feature)<th>
+			<th COLSPAN='4'>Level 1 (Group Feature)<th>
 		</tr>
 		<tr>
 			<th>Start New Game</th>
