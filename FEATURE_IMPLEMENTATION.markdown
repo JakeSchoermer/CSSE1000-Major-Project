@@ -1,8 +1,13 @@
 <style>
-
+	
+	table th {
+		background-color:#CCC;
+	}
+	
 	table td{
 		border-width:1px;
 		border-color:#FFFFFF;
+		text-align:center;
 	}
 	
 </style>
