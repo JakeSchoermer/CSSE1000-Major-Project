@@ -1,16 +1,4 @@
-<style>
-	
-	table th {
-		background-color:#CCC;
-	}
-	
-	table td{
-		border-width:1px;
-		border-color:#FFFFFF;
-		text-align:center;
-	}
-	
-</style>
+<link href="https://raw.github.com/clownfart/Markdown-CSS/master/markdown.css" rel="stylesheet"></link>
 
 
 #Comments File
