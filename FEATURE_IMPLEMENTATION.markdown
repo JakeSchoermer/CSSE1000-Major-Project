@@ -14,7 +14,7 @@
 		</tr>
 		<tr>
 			<th>Splash Screen</th>
-			<td>X</td>
+			<td style="text-align:center">X</td>
 			<td></td>
 			<td></td>
 		</tr>
