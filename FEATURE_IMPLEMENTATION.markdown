@@ -1,18 +1,3 @@
-<style type="text/css">
-	
-	table th {
-		background-color:#CCC;
-	}
-	
-	table td{
-		border-width:1px;
-		border-color:#FFFFFF;
-		text-align:center;
-	}
-	
-</style>
-
-
 #Comments File
 #### This file is designed to help track the implementation of features on the project.
 
