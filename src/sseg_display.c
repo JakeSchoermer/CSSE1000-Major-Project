@@ -5,5 +5,9 @@
 
 
 void init_sseg_score_display(void) {
-	return;
+	
+	//Set output to JH
+
+	DDRF = 0xFF;
+	
 }
