@@ -237,9 +237,27 @@ int8_t advance_projectiles(void) {
 			/* Move on to the next projectile */
 			projectileIndex++;
 
-			
-			if (projectileIndex == asteroid_at(0, 4)) {
+			//Check for collision
+			if (projectile_at(x,y) == asteroid_at(x,y)) {
 				remove_projectile(projectileIndex);
+				remove_asteroid(projectileIndex);
+
+				//Replacement Asteroids
+				uint8_t newX = 0;
+				uint8_t newY = 0;
+
+				while(1) {				
+
+					newX = (uint8_t)(rand() % FIELD_WIDTH);
+					newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
+
+					if(asteroid_at(newX,newY) == -1) {
+						asteroids[MAX_ASTEROIDS] = (x<<4)|y;	
+					}
+				
+				}
+
+				
 			}
 
 

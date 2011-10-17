@@ -33,8 +33,14 @@
 			<td>X</td>
 		</tr>
 		<tr>
-			<th>Replacement Asteroids</th>
+			<th>Hit Detection</th>
+			<td>X</td>
 			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<th>Replacement Asteroids</th>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
