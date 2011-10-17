@@ -14,19 +14,19 @@
 		</tr>
 		<tr>
 			<th>Splash Screen</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<th>Move Base Station Right</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<th>Base Station Limits</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
