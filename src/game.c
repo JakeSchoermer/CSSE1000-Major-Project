@@ -178,13 +178,13 @@ void copy_game_field_to_led_display(void) {
 */
 int8_t move_base(int8_t direction) {	
 	/* YOUR CODE HERE - FIX THIS FUNCTION */
-	
-	if (basePosition < 0 && direction == MOVE_LEFT) {
+
+	if (basePosition > 0 && direction == MOVE_LEFT) {
 		basePosition--;
 		return 1;
 	}
 
-	else if (basePosition < 7 && direction == MOVE_RIGHT) {
+	else if (basePosition <6 && direction == MOVE_RIGHT) {
 		basePosition++;
 		return 1;
 	}

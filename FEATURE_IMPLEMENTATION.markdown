@@ -6,7 +6,7 @@
 <table>
 	<thead>
 		<th>Feature</th>
-		<th>Implemented in Code </th>
+		<th>Implemented in Code* </th>
 		<th>Tested in AVR Studio</th>
 		<th>Tested on Hardware</th>
 	<thead>
@@ -17,20 +17,20 @@
 		<tr>
 			<th>Splash Screen</th>
 			<td>X</td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th>Move Base Station Right</th>
 			<td>X</td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th>Base Station Limits</th>
 			<td>X</td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th>Replacement Asteroids</th>
@@ -156,6 +156,8 @@
 	</tbody>
 </table>
 
+
+* Code must compile
 
 
 ####
