@@ -127,6 +127,12 @@ void initialise_hardware(void) {
 	** to time things by.
 	*/
 	init_timer2();
+
+	/* Initialise SSEG Score
+	**
+	*/
+	
+	init_sseg_score_display();
 	
 	/*
 	** Turn on interrupts (needed for timer to work)
