@@ -1,5 +1,7 @@
-#Comments File
-#### This file is designed to help track the implementation of features on the project.
+#Feature Implementation File
+#### This file is designed to help track the implementation of features on the project. Items marked with an X in each of the positions are considered to be completely implemented.
+
+***
 
 <table>
 	<thead>
@@ -10,11 +12,11 @@
 	<thead>
 	<tbody>
 		<tr>
-			<th COLSPAN='4'>Level 1<th>
+			<th COLSPAN='3'>Level 1<th>
 		</tr>
 		<tr>
 			<th>Splash Screen</th>
-			<td style="text-align:center">X</td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
@@ -43,7 +45,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<th COLSPAN='4'>Level 1 (Group Feature)<th>
+			<th COLSPAN='3'>Level 1 (Group Feature)<th>
 		</tr>
 		<tr>
 			<th>Start New Game</th>
@@ -153,3 +155,8 @@
 		</tr>
 	</tbody>
 </table>
+
+
+
+####
+Additional Comments:
