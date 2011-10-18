@@ -35,14 +35,14 @@
 		<tr>
 			<th>Hit Detection</th>
 			<td>X</td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th>Replacement Asteroids</th>
 			<td>X</td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th>Scoring</th>
