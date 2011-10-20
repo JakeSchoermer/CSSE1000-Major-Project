@@ -17,7 +17,7 @@ void init_sseg_score_display(void) {
 	//PORTF = 0xFF;
 
 	//Setup Timer
-	OCR1A = 9999; 
+	OCR1A = 1; 
     TCCR1A = 0x00; 
     TCCR1B = 0xA;
 }
