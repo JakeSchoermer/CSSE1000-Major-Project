@@ -39,10 +39,10 @@ ISR(TIMER1_COMPA_vect) {
 		/* Display a digit */ 
     if(seven_seg_cat == 0) { 
         /* Display rightmost digit*/ 
-        PORTF = seven_seg_data[1]; 
+        PORTF = seven_seg_data[score%10]; 
     } else { 
         /* Display leftmost digit*/ 
-        PORTF = seven_seg_data[2] | 0x80; 
+        PORTF = seven_seg_data[score/10] | 0x80; 
     } 
  
     /* Change which digit will be displayed next - toggle 
