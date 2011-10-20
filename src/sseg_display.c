@@ -25,7 +25,7 @@ void init_sseg_score_display(void) {
 
 
 ISR(TIMER1_COMPA_vect) {
-	
+	DDRF = 0xFF;
 	uint8_t score = get_score();
 
 	//PORTF = 0xFF;
@@ -36,7 +36,7 @@ ISR(TIMER1_COMPA_vect) {
         PORTF = 0xF0;//seven_seg_data[score%10]; 
     } else { 
         /* Display leftmost digit*/ 
-        PORTC = 0x0F;seven_seg_data[score/10] | 0x80; 
+        PORTF = 0x0F;//seven_seg_data[score/10] | 0x80; 
     } 
  
     /* Change which digit will be displayed next - toggle 
