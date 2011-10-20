@@ -114,6 +114,10 @@ int main(void) {
 			copy_game_field_to_led_display();
 			gameFieldUpdated = 0;
 		}
+		//Reset Button
+		if(PIND && (1<<7)) {
+			new_game();
+		}
 	}
 }
 
