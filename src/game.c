@@ -303,7 +303,7 @@ int8_t advance_asteroids(void) {
 			asteroids[asteroidIndex] = (x << 4) | y;
 			
 			// Move on to the next asteroid
-			projectileIndex++;
+			asteroidIndex++;
 		} else {
 			// Asteroid reached bottom, remove it
 			remove_asteroid(asteroidIndex);
