@@ -13,6 +13,8 @@ void init_sseg_score_display(void) {
 	
 	//Set output to JH
 	DDRF = 0xFF;
+	
+	//PORTF = 0xFF;
 
 	//Setup Timer
 	OCR1A = 9999; 
@@ -26,13 +28,15 @@ ISR(TIMER1_COMPA_vect) {
 	
 	uint8_t score = get_score();
 
+	//PORTF = 0xFF;
+
 		/* Display a digit */ 
     if(seven_seg_cat == 0) { 
         /* Display rightmost digit*/ 
-        PORTF = seven_seg_data[score%10]; 
+        PORTF = 0xF0;//seven_seg_data[score%10]; 
     } else { 
         /* Display leftmost digit*/ 
-        PORTC = seven_seg_data[score/10] | 0x80; 
+        PORTC = 0x0F;seven_seg_data[score/10] | 0x80; 
     } 
  
     /* Change which digit will be displayed next - toggle 
