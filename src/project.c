@@ -11,6 +11,7 @@
 #include "timer2.h"
 #include "scrolling_char_display.h"
 #include "sseg_display.h"
+#include "reset_btn.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
@@ -138,6 +139,13 @@ void initialise_hardware(void) {
 	
 	init_sseg_score_display();
 	
+	
+	/* Inititalise PMOD on JF
+	**		- Reset Button on Pin6
+	*/
+	
+	init_reset_btn();
+
 	/*
 	** Turn on interrupts (needed for timer to work)
 	*/
