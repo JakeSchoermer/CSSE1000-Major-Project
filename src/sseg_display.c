@@ -25,7 +25,7 @@ void init_sseg_score_display(void) {
 
 
 ISR(TIMER1_COMPA_vect) {
-	DDRF = 0xFF;
+	PORTF = 0xFF;
 	uint8_t score = get_score();
 
 	//PORTF = 0xFF;
