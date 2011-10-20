@@ -311,6 +311,8 @@ int8_t advance_asteroids(void) {
 			replaceAsteroid();
 		}
 	}
+	
+	return asteroidsMoved;
 }
 
 void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
