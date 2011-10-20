@@ -48,7 +48,7 @@
 			<th>Scoring</th>
 			<td>X</td>
 			<td>X</td>
-			<td></td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th COLSPAN='4'>Level 1 (Group Feature)<th>
