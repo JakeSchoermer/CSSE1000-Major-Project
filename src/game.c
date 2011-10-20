@@ -233,34 +233,38 @@ int8_t advance_projectiles(void) {
 			** the y position.
 			*/
 			y++;
+			
+			// Check for collision, If it occurs remove the projectile and asteroid
+			// and continue to the next projectile
+			int asteroidIndex;
+			if ((asteroidIndex = asteroid_at(x,y)) != -1) {
+				// Handle Collision
+				handleCollision(projectileIndex, asteroidIndex);
+				
+				/*remove_projectile(projectile_at(x,y));
+				remove_asteroid(asteroidIndex);
+				add_to_score(1);
+				
+				//Replacement Asteroids
+				uint8_t newX = 0;
+				uint8_t newY = 0;
+				
+				do {
+					newX = (uint8_t)(rand() % FIELD_WIDTH);
+					newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
+					
+					asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
+				} while (asteroid_at(newX, newY) != -1);*/
+				
+				// Continue to the next asteroid
+				numAsteroids++;
+				continue;
+			}
+			
 			/* Update the projectile position */
 			projectiles[projectileIndex] = (x<<4)|y;
 			/* Move on to the next projectile */
 			projectileIndex++;
-
-			//Check for collision
-			int asteroidIndex;
-			if ((asteroidIndex = asteroid_at(x,y)) != -1) {
-				remove_projectile(projectile_at(x,y));
-				remove_asteroid(asteroidIndex);
-				add_to_score(1);
-
-				//Replacement Asteroids
-				uint8_t newX = 0;
-				uint8_t newY = 0;
-
-				do {
-					newX = (uint8_t)(rand() % FIELD_WIDTH);
-					newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
-
-					asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
-				} while (asteroid_at(newX, newY) != -1);
-
-				numAsteroids++;
-				
-
-				
-			}
 
 
 		} else {
@@ -274,6 +278,72 @@ int8_t advance_projectiles(void) {
 		}
 	}
 	return projectilesMoved;
+}
+
+int8_t advance_asteroids(void) {
+	uint8_t x, y;
+	int8_t asteroidIndex;
+	int8_t asteroidsMoved = (numAsteroids > 0) ? 1 : 0;
+	
+	asteroidIndex = 0;
+	while (asteroidIndex < numAsteroids) {
+		// Get current asteroid position
+		x = asteroids[asteroidIndex] >> 4;
+		y = asteroids[asteroidIndex] & 0x0F;
+		
+		// If the asteroid hasn't reached the bottom
+		if (y > 0) {
+			
+			// Advance the asteroid downwards
+			y--
+			
+			// Handle collisions between projectiles and asteroids
+			// If collision occurs, remove both and continue to the next projectile
+			if ((int8_t projectileIndex = projectile_at(x, y)) != -1) {
+				// Handle Collision
+				handleCollision(projectileIndex, asteroidIndex);
+				
+				// Move on to next asteroid
+				asteroidIndex++;
+				continue;
+			}
+			
+			/**
+			 * Check If Asteroid Collides With Base Station
+			 *
+			 */
+			
+			// Update asteroid position
+			asteroids[asteroidIndex] = (x << 4) | y;
+			
+			// Move on to the next asteroid
+			projectileIndex++;
+		} else {
+			// Asteroid reached bottom, remove it
+			remove_asteroid(asteroidIndex);
+		}
+	}
+}
+
+void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
+	// Remove colliding objects
+	remove_projectile(projectileIndex);
+	remove_asteroid(asteroidIndex);
+	
+	// Increase Score
+	add_to_score(1);
+	
+	//Replacement Asteroids
+	uint8_t newX = 0;
+	uint8_t newY = 0;
+	
+	// Find position that isn't occupied
+	do {
+		newX = (uint8_t)(rand() % FIELD_WIDTH);
+		newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
+		
+		asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
+	} while (asteroid_at(newX, newY) != -1);
 }
 
 
