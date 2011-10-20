@@ -295,11 +295,12 @@ int8_t advance_asteroids(void) {
 		if (y > 0) {
 			
 			// Advance the asteroid downwards
-			y--
+			y--;
 			
 			// Handle collisions between projectiles and asteroids
 			// If collision occurs, remove both and continue to the next projectile
-			if ((int8_t projectileIndex = projectile_at(x, y)) != -1) {
+			int8_t projectileIndex;
+			if ((projectileIndex = projectile_at(x, y)) != -1) {
 				// Handle Collision
 				handleCollision(projectileIndex, asteroidIndex);
 				

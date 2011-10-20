@@ -55,7 +55,7 @@
 		</tr>
 		<tr>
 			<th>Start New Game</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
@@ -77,7 +77,7 @@
 		</tr>
 		<tr>
 			<th>Falling Asteroids</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
