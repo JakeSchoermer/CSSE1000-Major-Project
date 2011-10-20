@@ -12,7 +12,7 @@
 	<thead>
 	<tbody>
 		<tr>
-			<th COLSPAN='3'>Level 1<th>
+			<th COLSPAN='4'>Level 1<th>
 		</tr>
 		<tr>
 			<th>Splash Screen</th>
@@ -33,19 +33,25 @@
 			<td>X</td>
 		</tr>
 		<tr>
+			<th>Hit Detection</th>
+			<td>X</td>
+			<td>X</td>
+			<td>X</td>
+		</tr>
+		<tr>
 			<th>Replacement Asteroids</th>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th>Scoring</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
-			<th COLSPAN='3'>Level 1 (Group Feature)<th>
+			<th COLSPAN='4'>Level 1 (Group Feature)<th>
 		</tr>
 		<tr>
 			<th>Start New Game</th>
@@ -161,4 +167,4 @@
 
 
 ####
-Additional Comments:
+Additional Comments: Method created for the Scoring system. Tested fine with dummy data. Need to implement scoring logic.

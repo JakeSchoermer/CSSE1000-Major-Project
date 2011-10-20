@@ -10,8 +10,11 @@
 #include "score.h"
 #include "timer2.h"
 #include "scrolling_char_display.h"
+#include "sseg_display.h"
+#include "reset_btn.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
+
 
 /*
 ** Function prototypes - these are defined below main()
@@ -20,6 +23,8 @@ void initialise_hardware(void);
 void splash_screen(void);
 void new_game(void);
 void handle_game_over(void);
+
+
 
 /*
  * main -- Main program.
@@ -109,6 +114,10 @@ int main(void) {
 			copy_game_field_to_led_display();
 			gameFieldUpdated = 0;
 		}
+		//Reset Button
+		if(PIND && (1<<7)) {
+			new_game();
+		}
 	}
 }
 
@@ -127,7 +136,20 @@ void initialise_hardware(void) {
 	** to time things by.
 	*/
 	init_timer2();
+
+	/* Initialise SSEG Score
+	**
+	*/
 	
+	init_sseg_score_display();
+	
+	
+	/* Inititalise PMOD on JF
+	**		- Reset Button on Pin6
+	*/
+	
+	init_reset_btn();
+
 	/*
 	** Turn on interrupts (needed for timer to work)
 	*/
