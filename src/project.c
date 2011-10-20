@@ -122,9 +122,9 @@ int main(void) {
 			gameFieldUpdated = 0;
 		}
 		//Reset Button
-		/*if(PIND && (1<<7)) {
+		if(PIND && (1<<7)) {
 			new_game();
-		}*/
+		}
 	}
 }
 

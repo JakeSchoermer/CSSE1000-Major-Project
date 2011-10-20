@@ -78,8 +78,8 @@
 		<tr>
 			<th>Falling Asteroids</th>
 			<td>X</td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th>Base Station Hit Detection</th>
@@ -167,6 +167,6 @@
 
 
 ####
-Additional Comments: Method created for the Scoring system. Tested fine with dummy data. Need to implement scoring logic.
+Additional Comments:
 
 Asteroids falling but not replacing.
