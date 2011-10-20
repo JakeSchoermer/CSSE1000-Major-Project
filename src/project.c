@@ -74,7 +74,7 @@ int main(void) {
 		}
 
 		if(currentTime >= asteroidsLastAdvancedTime + 1000) {
-			/* Advance any projectiles every 1000ms. */
+			/* Advance any asteroids every 1000ms. */
 			gameFieldUpdated |= advance_asteroids();
 			asteroidsLastAdvancedTime = currentTime;
 		}
