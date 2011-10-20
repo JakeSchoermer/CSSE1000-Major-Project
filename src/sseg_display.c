@@ -17,26 +17,32 @@ void init_sseg_score_display(void) {
 	//PORTF = 0xFF;
 
 	//Setup Timer
-	OCR1A = 1; 
+	OCR1A = 99; 
     TCCR1A = 0x00; 
     TCCR1B = 0xA;
+
+	//Enable interrupt on timer on output compare match  
+	 
+    TIMSK |= (1 << 4); 
+ 
+    /* Ensure interrupt flag is cleared */ 
+    TIFR |= (1 << 4); 
+
 }
 
 
 
 ISR(TIMER1_COMPA_vect) {
-	PORTF = 0xFF;
 	uint8_t score = get_score();
 
-	//PORTF = 0xFF;
 
 		/* Display a digit */ 
     if(seven_seg_cat == 0) { 
         /* Display rightmost digit*/ 
-        PORTF = 0xF0;//seven_seg_data[score%10]; 
+        PORTF = seven_seg_data[1]; 
     } else { 
         /* Display leftmost digit*/ 
-        PORTF = 0x0F;//seven_seg_data[score/10] | 0x80; 
+        PORTF = seven_seg_data[2] | 0x80; 
     } 
  
     /* Change which digit will be displayed next - toggle 
