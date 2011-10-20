@@ -67,7 +67,7 @@
 		</tr>
 		<tr>
 			<th>Random Asteroid Positions</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
