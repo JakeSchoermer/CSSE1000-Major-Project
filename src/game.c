@@ -308,19 +308,11 @@ int8_t advance_asteroids(void) {
 			// Asteroid reached bottom, remove it
 			remove_asteroid(asteroidIndex);
 			
-			//Replacement Asteroids
-			uint8_t newX = 0;
-			uint8_t newY = 0;
-			
-			// Find position that isn't occupied
-			do {
-				newX = (uint8_t)(rand() % FIELD_WIDTH);
-				newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
-				
-				asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
-			} while (asteroid_at(newX, newY) != -1);
+			replaceAsteroid();
 		}
 	}
+	
+	return asteroidsMoved;
 }
 
 void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
@@ -331,6 +323,10 @@ void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 	// Increase Score
 	add_to_score(1);
 	
+	replaceAsteroid();
+}
+
+void replaceAsteroid() {
 	//Replacement Asteroids
 	uint8_t newX = 0;
 	uint8_t newY = 0;
