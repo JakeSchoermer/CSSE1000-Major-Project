@@ -4,6 +4,9 @@
 ** Original version by Peter Sutton
 */
 
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#define _CSSE1000_MAIN
 #include "game.h"
 #include "joystick.h"
 #include "led_display.h"
@@ -11,10 +14,16 @@
 #include "timer2.h"
 #include "scrolling_char_display.h"
 #include "sseg_display.h"
-#include "reset_btn.h"
-#include <avr/io.h>
-#include <avr/interrupt.h>
+#include "pmod.h"
 
+
+
+/*Global Variables*/
+
+uint16_t high_score;
+
+uint8_t seven_seg_data[10] = {63,6,91,79,102,109,125,7,127,111};
+uint8_t seven_seg_cat = 0; 
 
 /*
 ** Function prototypes - these are defined below main()
@@ -23,8 +32,6 @@ void initialise_hardware(void);
 void splash_screen(void);
 void new_game(void);
 void handle_game_over(void);
-
-
 
 /*
  * main -- Main program.
@@ -123,7 +130,25 @@ int main(void) {
 		}
 		//Reset Button
 		if(PIND && (1<<7)) {
+			if (high_score < get_score()) {
+				high_score = get_score();
+			}
 			new_game();
+		}
+		//High Score
+		if (PINB && (1<<4)) {
+			//display high_score
+			if(seven_seg_cat == 0) { 
+        		PORTF = seven_seg_data[high_score%10]; 
+    		} else { 
+        	/* Display leftmost digit*/ 
+        		PORTF = seven_seg_data[high_score/10] | 0x80; 
+    		}
+
+			/* Change which digit will be displayed next - toggle 
+    		** the least significant bit. 
+    		*/ 
+    		seven_seg_cat ^= (1 << 0);				
 		}
 	}
 }
@@ -155,7 +180,7 @@ void initialise_hardware(void) {
 	**		- Reset Button on Pin6
 	*/
 	
-	//init_reset_btn();
+	init_pmod();
 
 	/*
 	** Turn on interrupts (needed for timer to work)

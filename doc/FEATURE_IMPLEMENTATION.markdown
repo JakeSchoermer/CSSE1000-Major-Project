@@ -61,7 +61,7 @@
 		</tr>
 		<tr>
 			<th>High Score</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>

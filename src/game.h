@@ -54,6 +54,11 @@ int8_t fire_projectile(void);
 */
 int8_t advance_projectiles(void);
 
+/*
+** Advance the Asteroids
+*/
+int8_t advance_asteroids(void);
+
 /* 
 ** Attempt to move the base station to the left or the right. Returns
 ** 1 if successful, 0 otherwise (e.g. already at edge). The "direction"

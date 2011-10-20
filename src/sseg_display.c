@@ -1,12 +1,10 @@
+#include <stdlib.h>
+#include <avr/interrupt.h>
 #include "game.h"
 #include "sseg_display.h"
 #include "score.h"
-#include <stdlib.h>
-#include <avr/interrupt.h>
+#include "project.h"
 
-//Global Variables
-uint8_t seven_seg_data[10] = {63,6,91,79,102,109,125,7,127,111};
-volatile uint8_t seven_seg_cat = 0; 
 
 
 void init_sseg_score_display(void) {
