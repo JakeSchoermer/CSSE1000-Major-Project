@@ -168,3 +168,5 @@
 
 ####
 Additional Comments: Method created for the Scoring system. Tested fine with dummy data. Need to implement scoring logic.
+
+Asteroids falling but not replacing.
