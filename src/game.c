@@ -232,20 +232,15 @@ int8_t advance_projectiles(void) {
 			** the y position.
 			*/
 			y++;
-			
-			// Handle collisions between projectiles and asteroids
-			// If collision occurs, remove both and continue to the next projectile
-			if ((int8_t asteroidIndex = asteroid_at(x, y)) != -1) {
-				remove_projectile(projectileIndex);
-				remove_asteroid(asteroidIndex);
-				projectileIndex++;
-				continue;
-			}
-			
 			/* Update the projectile position */
 			projectiles[projectileIndex] = (x<<4)|y;
 			/* Move on to the next projectile */
 			projectileIndex++;
+
+			
+			if (projectileIndex == asteroid_at(0, 4)) {
+				remove_projectile(projectileIndex);
+			}
 
 
 		} else {
@@ -259,49 +254,6 @@ int8_t advance_projectiles(void) {
 		}
 	}
 	return projectilesMoved;
-}
-
-int8_t advance_asteroids(void) {
-	uint8_t x, y;
-	int8_t asteroidIndex;
-	int8_t asteroidsMoved = (numAsteroids > 0) ? 1 : 0;
-	
-	asteroidIndex = 0;
-	while (asteroidIndex < numAsteroids) {
-		// Get current asteroid position
-		x = asteroids[asteroidIndex] >> 4;
-		y = asteroids[asteroidIndex] & 0x0F;
-		
-		// If the asteroid hasn't reached the bottom
-		if (y > 0) {
-			
-			// Advance the asteroid downwards
-			y--
-			
-			// Handle collisions between projectiles and asteroids
-			// If collision occurs, remove both and continue to the next projectile
-			if ((int8_t projectileIndex = projectile_at(x, y)) != -1) {
-				remove_projectile(projectileIndex);
-				remove_asteroid(asteroidIndex);
-				asteroidIndex++;
-				continue;
-			}
-			
-			/**
-			 * Check If Asteroid Collides With Base Station
-			 *
-			 */
-			
-			// Update asteroid position
-			asteroids[asteroidIndex] = (x << 4) | y;
-			
-			// Move on to the next asteroid
-			projectileIndex++;
-		} else {
-			// Asteroid reached bottom, remove it
-			remove_asteroid(asteroidIndex);
-		}
-	}
 }
 
 
