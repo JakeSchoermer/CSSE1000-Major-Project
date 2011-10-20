@@ -46,6 +46,7 @@ int main(void) {
 	uint32_t displayLastUpdatedTime = 0;	/* clock ticks */
 	uint32_t joystickLastCheckedTime = 0;	/* clock ticks */
 	uint32_t projectilesLastAdvancedTime = 0; /* clock ticks */
+	uint32_t asteroidsLastAdvancedTime = 0; /* clock ticks */
 	
 	initialise_hardware();
 
@@ -70,6 +71,12 @@ int main(void) {
 			/* Advance any projectiles every 1000ms. */
 			gameFieldUpdated |= advance_projectiles();
 			projectilesLastAdvancedTime = currentTime;
+		}
+
+		if(currentTime >= asteroidsLastAdvancedTime + 1000) {
+			/* Advance any projectiles every 1000ms. */
+			gameFieldUpdated |= advance_asteroids();
+			asteroidsLastAdvancedTime = currentTime;
 		}
 
 		/* Check clock tick value and take action if necessary */

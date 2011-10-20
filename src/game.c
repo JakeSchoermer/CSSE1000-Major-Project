@@ -241,21 +241,6 @@ int8_t advance_projectiles(void) {
 				// Handle Collision
 				handleCollision(projectileIndex, asteroidIndex);
 				
-				/*remove_projectile(projectile_at(x,y));
-				remove_asteroid(asteroidIndex);
-				add_to_score(1);
-				
-				//Replacement Asteroids
-				uint8_t newX = 0;
-				uint8_t newY = 0;
-				
-				do {
-					newX = (uint8_t)(rand() % FIELD_WIDTH);
-					newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
-					
-					asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
-				} while (asteroid_at(newX, newY) != -1);*/
-				
 				// Continue to the next asteroid
 				numAsteroids++;
 				continue;
