@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "led_display.h"
+#include "score.h"
 #include <stdlib.h>
 #include <avr/interrupt.h>
 /* Stdlib needed for rand() - random number generator */
@@ -242,6 +243,7 @@ int8_t advance_projectiles(void) {
 			if ((asteroidIndex = asteroid_at(x,y)) != -1) {
 				remove_projectile(projectile_at(x,y));
 				remove_asteroid(asteroidIndex);
+				add_to_score(1);
 
 				//Replacement Asteroids
 				uint8_t newX = 0;
@@ -255,7 +257,6 @@ int8_t advance_projectiles(void) {
 				} while (asteroid_at(newX, newY) != -1);
 
 				numAsteroids++;
-				
 				
 
 				

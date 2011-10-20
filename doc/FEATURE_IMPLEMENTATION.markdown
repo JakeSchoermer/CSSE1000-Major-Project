@@ -46,7 +46,7 @@
 		</tr>
 		<tr>
 			<th>Scoring</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
@@ -167,4 +167,4 @@
 
 
 ####
-Additional Comments:
+Additional Comments: Method created for the Scoring system. Tested fine with dummy data. Need to implement scoring logic.

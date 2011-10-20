@@ -14,6 +14,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
+
 /*
 ** Function prototypes - these are defined below main()
 */
@@ -21,6 +22,8 @@ void initialise_hardware(void);
 void splash_screen(void);
 void new_game(void);
 void handle_game_over(void);
+
+
 
 /*
  * main -- Main program.
