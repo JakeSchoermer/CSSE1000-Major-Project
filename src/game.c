@@ -64,6 +64,13 @@ static int8_t projectile_at(uint8_t x, uint8_t y);
 static void remove_asteroid(int8_t asteroidIndex);
 static void remove_projectile(int8_t projectileIndex);
 
+/*
+** Asteroid / Projectile Maintenance Functions
+*/
+void handleCollision(int8_t projectileIndex, int8_t asteroidIndex);
+void replaceAsteroid();
+int8_t createAsteroid(int8_t x, int8_t y);
+
 /***********************************************************/
 
 /* 
@@ -336,8 +343,19 @@ void replaceAsteroid() {
 		newX = (uint8_t)(rand() % FIELD_WIDTH);
 		newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
 		
-		asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
+		//asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
 	} while (asteroid_at(newX, newY) != -1);
+	
+	createAsteroid(newX, newY);
+}
+
+int8_t createAsteroid(int8_t x, int8_t y) {
+	if (numAsteroids >= MAX_ASTEROIDS - 1) {
+		return -1;
+	} else {
+		asteroids[numAsteroids + 1] = (x << 4) | y;
+		return numAsteroids + 1;
+	}
 }
 
 
