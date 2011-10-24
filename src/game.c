@@ -44,6 +44,7 @@ uint8_t    projectiles[MAX_PROJECTILES];
 int8_t    numAsteroids;
 uint8_t    asteroids[MAX_ASTEROIDS];
 int		  health;
+bool		paused;
 
 /************************************************************ 
 ** Prototypes for internal information functions 
