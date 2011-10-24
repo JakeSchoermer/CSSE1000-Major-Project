@@ -292,6 +292,9 @@ int8_t advance_asteroids(void) {
 			// Advance the asteroid downwards
 			y--;
 			
+			// Handle Collisions between base station and asteroids
+			handleBaseCollision();
+			
 			// Handle collisions between projectiles and asteroids
 			// If collision occurs, remove both and continue to the next projectile
 			int8_t projectileIndex;
