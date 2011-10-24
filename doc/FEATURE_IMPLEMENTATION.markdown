@@ -83,7 +83,7 @@
 		</tr>
 		<tr>
 			<th>Base Station Hit Detection</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
