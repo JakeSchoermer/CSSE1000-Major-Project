@@ -324,7 +324,7 @@ int8_t advance_asteroids(void) {
 }
 
 int getAsteroidFallInterval() {
-	return 5000 - (getScore() * 100);
+	return 5000 - (get_score() * 100);
 }
 
 
@@ -343,13 +343,13 @@ void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 
 void handleBaseCollision() {
 	int8_t asteroidIndex;
-	for(x=basePosition - 1; x <= basePosition+1; x++) {
+	for(int x=basePosition - 1; x <= basePosition+1; x++) {
 		if(asteroidIndex = asteroid_at(x, 0)) {
 			remove_asteroid(asteroidIndex);
 			// Decrement Lives
 		}
 	}
-	if (asteroidIndex = asteroid_at(basePosition, 1) {
+	if (asteroidIndex = asteroid_at(basePosition, 1)) {
 		remove_asteroid(asteroidIndex);
 		// Decrement Lives
 	}
