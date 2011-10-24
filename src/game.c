@@ -339,7 +339,8 @@ int getHealth() {
 void decrementHealth() {
 	health--;
 	
-	if (health > 0) {
+	if (health <= 0) {
+		health = 0;
 		// End Game
 	}
 }
