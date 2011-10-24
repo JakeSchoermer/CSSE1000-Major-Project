@@ -104,7 +104,7 @@
 		</tr>
 		<tr>
 			<th>Game Pause</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
