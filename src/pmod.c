@@ -11,6 +11,7 @@ void init_pmod(void) {
 	/* Button PMOD */
 		
 	DDRD |= (1 << 7); //Reset Button
+	
 
 	DDRB |= (1 << 4); //High Score Button
 	
