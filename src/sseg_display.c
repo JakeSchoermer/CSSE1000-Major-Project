@@ -15,7 +15,7 @@ void init_sseg_score_display(void) {
 	//PORTF = 0xFF;
 
 	//Setup Timer
-	OCR1A = 99; 
+	OCR1A = 9999; 
     TCCR1A = 0x00; 
     TCCR1B = 0xA;
 
@@ -24,23 +24,20 @@ void init_sseg_score_display(void) {
     TIMSK |= (1 << 4); 
  
     /* Ensure interrupt flag is cleared */ 
-    TIFR |= (1 << 4); 
+    TIFR |= (1 << 4);
 
 }
 
 
 
 ISR(TIMER1_COMPA_vect) {
-	uint8_t score = get_score();
-
-
 		/* Display a digit */ 
     if(seven_seg_cat == 0) { 
         /* Display rightmost digit*/ 
-        PORTF = seven_seg_data[score%10]; 
+        PORTF = seven_seg_data[get_score()%10]; 
     } else { 
         /* Display leftmost digit*/ 
-        PORTF = seven_seg_data[score/10] | 0x80; 
+        PORTF = seven_seg_data[get_score()/10] | 0x80; 
     } 
  
     /* Change which digit will be displayed next - toggle 

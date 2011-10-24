@@ -133,14 +133,16 @@ int main(void) {
 			gameFieldUpdated = 0;
 		}
 		//Reset Button
-		if(PIND && (1<<7)) {
+		if((PIND & (1<<7)) == (1<<7)) {
 			if (high_score < get_score()) {
 				high_score = get_score();
 			}
+			add_to_score(10);
 			new_game();
 		}
+
 		//High Score
-		if (PINB && (1<<4)) {
+		if ((PIND & (1<<4)) == (1<<4)) {
 			//display high_score
 			if(seven_seg_cat == 0) { 
         		PORTF = seven_seg_data[high_score%10]; 
@@ -189,6 +191,7 @@ void initialise_hardware(void) {
 	/*
 	** Turn on interrupts (needed for timer to work)
 	*/
+
 	sei();
 }
 
