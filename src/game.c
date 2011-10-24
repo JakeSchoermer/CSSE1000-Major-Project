@@ -68,6 +68,7 @@ static void remove_projectile(int8_t projectileIndex);
 ** Asteroid / Projectile Maintenance Functions
 */
 void handleCollision(int8_t projectileIndex, int8_t asteroidIndex);
+void handleBaseCollision(void);
 void replaceAsteroid();
 int8_t createAsteroid(int8_t x, int8_t y);
 
@@ -322,6 +323,13 @@ int8_t advance_asteroids(void) {
 	return asteroidsMoved;
 }
 
+int getAsteroidFallInterval() {
+	return 5000 - (getScore() * 100);
+}
+
+
+/******** INTERNAL FUNCTIONS ****************/
+
 void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 	// Remove colliding objects
 	remove_projectile(projectileIndex);
@@ -331,6 +339,20 @@ void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 	add_to_score(1);
 	
 	replaceAsteroid();
+}
+
+void handleBaseCollision() {
+	int8_t asteroidIndex;
+	for(x=basePosition - 1; x <= basePosition+1; x++) {
+		if(asteroidIndex = asteroid_at(x, 0)) {
+			remove_asteroid(asteroidIndex);
+			// Decrement Lives
+		}
+	}
+	if (asteroidIndex = asteroid_at(basePosition, 1) {
+		remove_asteroid(asteroidIndex);
+		// Decrement Lives
+	}
 }
 
 void replaceAsteroid() {
@@ -357,9 +379,6 @@ int8_t createAsteroid(int8_t x, int8_t y) {
 		return numAsteroids + 1;
 	}
 }
-
-
-/******** INTERNAL FUNCTIONS ****************/
 
 /* Check whether there is an asteroid at a given position.
 ** Returns -1 if there is no asteroid, otherwise we return

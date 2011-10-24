@@ -59,6 +59,8 @@ int8_t advance_projectiles(void);
 */
 int8_t advance_asteroids(void);
 
+int getAsteroidFallInterval();
+
 /* 
 ** Attempt to move the base station to the left or the right. Returns
 ** 1 if successful, 0 otherwise (e.g. already at edge). The "direction"
