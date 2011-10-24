@@ -217,10 +217,10 @@ int8_t fire_projectile(void) {
 		projectiles[numProjectiles++] = (basePosition<<4)|2;
 		
 		// Check for collision with asteroid right in front of base station
-		int8_t asteroidIndex;
-		if (asteroidIndex = asteroid_at(basePosition, 2)) {
-			handleCollision(numProjectiles, asteroidIndex);
-		}
+		//int8_t asteroidIndex;
+		//if (asteroidIndex = asteroid_at(basePosition, 2)) {
+		//	handleCollision(numProjectiles, asteroidIndex);
+		//}
 		
 		return 1;
 	} else {
@@ -392,8 +392,8 @@ void replaceAsteroid() {
 	// Find position that isn't occupied
 	do {
 		newX = (uint8_t)(rand() % FIELD_WIDTH);
-		//newY = 14;
-		newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
+		newY = 14;
+		//newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
 		
 		//asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
 	} while (asteroid_at(newX, newY) != -1);
