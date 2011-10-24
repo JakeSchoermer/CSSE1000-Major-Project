@@ -215,6 +215,13 @@ int8_t fire_projectile(void) {
 			projectile_at(basePosition, 2) == -1) {
 		/* Have space to add projectile */
 		projectiles[numProjectiles++] = (basePosition<<4)|2;
+		
+		// Check for collision with asteroid right in front of base station
+		int8_t asteroidIndex;
+		if (ateroidIndex = asteroid_at(basePosition, 2)) {
+			handleCollision(projectileIndex, asteroidIndex);
+		}
+		
 		return 1;
 	} else {
 		return 0;
