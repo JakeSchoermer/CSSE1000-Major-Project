@@ -329,7 +329,11 @@ int8_t advance_asteroids(void) {
 }
 
 int getAsteroidFallInterval() {
-	return 5000 - (getScore() * 100);
+	int interval = 5000 - (getScore() * 100);
+	if (interval <= 500) {
+		interval = 500;
+	}
+	return interval;
 }
 
 int getHealth() {
