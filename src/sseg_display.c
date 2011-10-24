@@ -56,4 +56,6 @@ ISR(TIMER1_COMPA_vect) {
     */ 
     seven_seg_cat ^= (1 << 0);			
 
+	show_high_score = 0;
+
 }

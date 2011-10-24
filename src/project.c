@@ -20,7 +20,7 @@
 
 /*Global Variables*/
 
-uint16_t high_score = 99;
+uint16_t high_score = 0;
 uint8_t show_high_score = 0;
 
 uint8_t seven_seg_data[10] = {63,6,91,79,102,109,125,7,127,111};
@@ -147,13 +147,8 @@ int main(void) {
 
 		//High Score
 		if ((PINB & (1<<4)) == (1<<4)) {
-			//display high_score
-			while((PINB & (1<<4)) == (1<<4)) {
-				show_high_score = 1;
-			}
+			show_high_score = 1;
 		}
-		
-		show_high_score = 0;
 	}
 }
 
