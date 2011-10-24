@@ -151,8 +151,8 @@ int main(void) {
 			while((PINB & (1<<4)) == (1<<4)) {
 				show_high_score = 1;
 			}
-			show_high_score = 1;			
 		}
+		show_high_score = 1;
 	}
 }
 
