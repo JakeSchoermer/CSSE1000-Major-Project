@@ -170,5 +170,5 @@
 Additional Comments:
 
 Asteroids falling but not replacing.
-
-Health Bar - Stub Only
+Base Collision - Doesn't remove asteroids
+Health Bar - Jumps to zero on update

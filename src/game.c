@@ -215,6 +215,13 @@ int8_t fire_projectile(void) {
 			projectile_at(basePosition, 2) == -1) {
 		/* Have space to add projectile */
 		projectiles[numProjectiles++] = (basePosition<<4)|2;
+		
+		// Check for collision with asteroid right in front of base station
+		int8_t asteroidIndex;
+		if (ateroidIndex = asteroid_at(basePosition, 2)) {
+			handleCollision(projectileIndex, asteroidIndex);
+		}
+		
 		return 1;
 	} else {
 		return 0;
@@ -385,7 +392,8 @@ void replaceAsteroid() {
 	// Find position that isn't occupied
 	do {
 		newX = (uint8_t)(rand() % FIELD_WIDTH);
-		newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
+		newY = FIELD_HEIGHT - 1;
+		//newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
 		
 		//asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
 	} while (asteroid_at(newX, newY) != -1);
@@ -394,7 +402,7 @@ void replaceAsteroid() {
 }
 
 int8_t createAsteroid(int8_t x, int8_t y) {
-	if (numAsteroids >= MAX_ASTEROIDS - 1) {
+	if (numAsteroids > MAX_ASTEROIDS - 1) {
 		return -1;
 	} else {
 		asteroids[numAsteroids + 1] = (x << 4) | y;
