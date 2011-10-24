@@ -24,3 +24,27 @@ void init_pmod(void) {
 	PORTE |= 0xF0;
 
 }
+
+void outputHealth(int health) {
+	switch (health) {
+		case 0:
+			PORTE &= 0x0F;
+			break;
+		
+		case 1:
+			PORTE &= 0x1F;
+			break;
+			
+		case 2:
+			PORTE &= 0x2F;
+			break;
+			
+		case 3:
+			PORTE &= 0x4F;
+			break;
+			
+		case 4:
+			PORTE &= 0x8F;
+			break;
+	}
+}

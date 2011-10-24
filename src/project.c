@@ -126,6 +126,10 @@ int main(void) {
 			** Update display of board since its appearance has changed.
 			*/
 			copy_game_field_to_led_display();
+			
+			// Update Health Output
+			outputHealth(getHealth());
+			
 			gameFieldUpdated = 0;
 		}
 		//Reset Button

@@ -6,3 +6,5 @@
 
 
 void init_pmod(void);
+
+void outputHealth(int);
