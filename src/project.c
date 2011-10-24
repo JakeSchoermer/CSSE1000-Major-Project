@@ -147,6 +147,7 @@ int main(void) {
 		//High Score
 		if ((PINB & (1<<4)) == (1<<4)) {
 			//display high_score
+			highscore = 99;
 			if(seven_seg_cat == 0) { 
         		PORTF = seven_seg_data[high_score%10]; 
     		} else { 
