@@ -20,7 +20,8 @@
 
 /*Global Variables*/
 
-uint16_t high_score;
+uint16_t high_score = 99;
+uint8_t show_high_score;
 
 uint8_t seven_seg_data[10] = {63,6,91,79,102,109,125,7,127,111};
 uint8_t seven_seg_cat = 0; 
@@ -147,18 +148,10 @@ int main(void) {
 		//High Score
 		if ((PINB & (1<<4)) == (1<<4)) {
 			//display high_score
-			highscore = 99;
-			if(seven_seg_cat == 0) { 
-        		PORTF = seven_seg_data[high_score%10]; 
-    		} else { 
-        	/* Display leftmost digit*/ 
-        		PORTF = seven_seg_data[high_score/10] | 0x80; 
-    		}
-
-			/* Change which digit will be displayed next - toggle 
-    		** the least significant bit. 
-    		*/ 
-    		seven_seg_cat ^= (1 << 0);				
+			while((PINB & (1<<4)) == (1<<4)) {
+				show_high_score = 1;
+			}
+			show_high_score = 1;			
 		}
 	}
 }

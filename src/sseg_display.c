@@ -31,13 +31,24 @@ void init_sseg_score_display(void) {
 
 
 ISR(TIMER1_COMPA_vect) {
+
+	
+	int show;
+
+	if (show_high_score = 1) {
+		show = high_score;
+	}
+	else {
+		show = get_score();
+	}
+
 		/* Display a digit */ 
     if(seven_seg_cat == 0) { 
         /* Display rightmost digit*/ 
-        PORTF = seven_seg_data[get_score()%10]; 
+        PORTF = seven_seg_data[show%10]; 
     } else { 
         /* Display leftmost digit*/ 
-        PORTF = seven_seg_data[get_score()/10] | 0x80; 
+        PORTF = seven_seg_data[show/10] | 0x80; 
     } 
  
     /* Change which digit will be displayed next - toggle 
