@@ -152,7 +152,7 @@ int main(void) {
 				show_high_score = 1;
 			}
 		}
-		show_high_score = 1;
+		show_high_score = 0;
 	}
 }
 
