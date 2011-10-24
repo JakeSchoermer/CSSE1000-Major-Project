@@ -134,6 +134,9 @@ int main(void) {
 		}
 		//Reset Button
 		if((PIND & (1<<7)) == (1<<7)) {
+			
+			while((PIND & (1<<7)) == (1<<7)) {
+			}
 			if (high_score < get_score()) {
 				high_score = get_score();
 			}
@@ -142,7 +145,7 @@ int main(void) {
 		}
 
 		//High Score
-		if ((PIND & (1<<4)) == (1<<4)) {
+		if ((PINB & (1<<4)) == (1<<4)) {
 			//display high_score
 			if(seven_seg_cat == 0) { 
         		PORTF = seven_seg_data[high_score%10]; 
