@@ -43,6 +43,7 @@ int8_t    numProjectiles;
 uint8_t    projectiles[MAX_PROJECTILES];
 int8_t    numAsteroids;
 uint8_t    asteroids[MAX_ASTEROIDS];
+int		  health;
 
 /************************************************************ 
 ** Prototypes for internal information functions 
@@ -67,6 +68,7 @@ static void remove_projectile(int8_t projectileIndex);
 /*
 ** Asteroid / Projectile Maintenance Functions
 */
+void decrementHealth();
 void handleCollision(int8_t projectileIndex, int8_t asteroidIndex);
 void handleBaseCollision(void);
 void replaceAsteroid();
@@ -290,6 +292,9 @@ int8_t advance_asteroids(void) {
 			// Advance the asteroid downwards
 			y--;
 			
+			// Handle Collisions between base station and asteroids
+			handleBaseCollision();
+			
 			// Handle collisions between projectiles and asteroids
 			// If collision occurs, remove both and continue to the next projectile
 			int8_t projectileIndex;
@@ -327,8 +332,21 @@ int getAsteroidFallInterval() {
 	return 5000 - (get_score() * 100);
 }
 
+int getHealth() {
+	return health;
+}
+
 
 /******** INTERNAL FUNCTIONS ****************/
+
+void decrementHealth() {
+	health--;
+	
+	if (health <= 0) {
+		health = 0;
+		// End Game
+	}
+}
 
 void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 	// Remove colliding objects
@@ -346,12 +364,12 @@ void handleBaseCollision() {
 	for(int x=basePosition - 1; x <= basePosition+1; x++) {
 		if(asteroidIndex = asteroid_at(x, 0)) {
 			remove_asteroid(asteroidIndex);
-			// Decrement Lives
+			decrementHealth();
 		}
 	}
 	if (asteroidIndex = asteroid_at(basePosition, 1)) {
 		remove_asteroid(asteroidIndex);
-		// Decrement Lives
+		decrementHealth();
 	}
 }
 
