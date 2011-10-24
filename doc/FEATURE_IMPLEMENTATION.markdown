@@ -89,13 +89,13 @@
 		</tr>
 		<tr>
 			<th>Acceleration</th>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th>Health Bar</th>
-			<td></td>
+			<td>X</td>
 			<td></td>
 			<td></td>
 		</tr>
@@ -170,3 +170,5 @@
 Additional Comments:
 
 Asteroids falling but not replacing.
+
+Health Bar - Stub Only
