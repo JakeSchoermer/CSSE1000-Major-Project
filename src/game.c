@@ -217,7 +217,7 @@ int8_t fire_projectile(void) {
 		projectiles[numProjectiles++] = (basePosition<<4)|2;
 		
 		// Check for collision with asteroid right in front of base station
-		//int8_t asteroidIndex;
+		int8_t asteroidIndex;
 		//if (asteroidIndex = asteroid_at(basePosition, 2)) {
 		//	handleCollision(numProjectiles, asteroidIndex);
 		//}
@@ -336,10 +336,10 @@ int8_t advance_asteroids(void) {
 }
 
 int getAsteroidFallInterval() {
-	int interval = 100 - (get_score() * 100);
-	//if (interval <= 500) {
-	//	interval = 500;
-	//}
+	int interval = 5000 - (get_score() * 100);
+	if (interval <= 500) {
+		interval = 500;
+	}
 	return interval;
 }
 
@@ -350,37 +350,28 @@ int getHealth() {
 
 /******** INTERNAL FUNCTIONS ****************/
 
-void decrementHealth() {
-	health--;
-	
-	if (health <= 0) {
-		health = 0;
-		// End Game
-	}
-}
-
 void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 	// Remove colliding objects
 	remove_projectile(projectileIndex);
 	remove_asteroid(asteroidIndex);
-	
+
 	// Increase Score
 	add_to_score(1);
-	
+
 	replaceAsteroid();
 }
 
 void handleBaseCollision() {
 	int8_t asteroidIndex;
-	/*for(int x=basePosition - 1; x <= basePosition+1; x++) {
+	for(int x=basePosition - 1; x <= basePosition+1; x++) {
 		if(asteroidIndex = asteroid_at(x, 0)) {
 			remove_asteroid(asteroidIndex);
-			decrementHealth();
+			// Decrement Lives
 		}
-	}*/
-	if ((asteroidIndex = asteroid_at(basePosition, 1))) {
+	}
+	if (asteroidIndex = asteroid_at(basePosition, 1)) {
 		remove_asteroid(asteroidIndex);
-		decrementHealth();
+		// Decrement Lives
 	}
 }
 
@@ -388,26 +379,24 @@ void replaceAsteroid() {
 	//Replacement Asteroids
 	uint8_t newX = 0;
 	uint8_t newY = 0;
-	
+
 	// Find position that isn't occupied
 	do {
 		newX = (uint8_t)(rand() % FIELD_WIDTH);
-		newY = 14;
-		//newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
-		
+		newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
+
 		//asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
 	} while (asteroid_at(newX, newY) != -1);
-	
+
 	createAsteroid(newX, newY);
 }
 
 int8_t createAsteroid(int8_t x, int8_t y) {
-	if (numAsteroids > MAX_ASTEROIDS - 1) {
+	if (numAsteroids >= MAX_ASTEROIDS - 1) {
 		return -1;
 	} else {
-		numAsteroids++;
-		asteroids[numAsteroids] = (x << 4) | y;
-		return numAsteroids;
+		asteroids[numAsteroids + 1] = (x << 4) | y;
+		return numAsteroids + 1;
 	}
 }
 
@@ -480,4 +469,3 @@ static void remove_projectile(int8_t projectileIndex) {
 	/* Last position in projectiles array is no longer used */
 	numProjectiles--;
 }
-
