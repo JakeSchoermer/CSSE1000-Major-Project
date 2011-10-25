@@ -44,7 +44,6 @@ uint8_t    projectiles[MAX_PROJECTILES];
 int8_t    numAsteroids;
 uint8_t    asteroids[MAX_ASTEROIDS];
 int		  health;
-bool		paused;
 
 /************************************************************ 
 ** Prototypes for internal information functions 
@@ -337,10 +336,10 @@ int8_t advance_asteroids(void) {
 }
 
 int getAsteroidFallInterval() {
-	int interval = 5000 - (get_score() * 100);
-	if (interval <= 500) {
-		interval = 500;
-	}
+	int interval = 100 - (get_score() * 100);
+	//if (interval <= 500) {
+	//	interval = 500;
+	//}
 	return interval;
 }
 
@@ -379,7 +378,7 @@ void handleBaseCollision() {
 			decrementHealth();
 		}
 	}*/
-	if (asteroidIndex = asteroid_at(basePosition, 1)) {
+	if ((asteroidIndex = asteroid_at(basePosition, 1))) {
 		remove_asteroid(asteroidIndex);
 		decrementHealth();
 	}
@@ -406,8 +405,9 @@ int8_t createAsteroid(int8_t x, int8_t y) {
 	if (numAsteroids > MAX_ASTEROIDS - 1) {
 		return -1;
 	} else {
-		asteroids[numAsteroids + 1] = (x << 4) | y;
-		return numAsteroids + 1;
+		numAsteroids++;
+		asteroids[numAsteroids] = (x << 4) | y;
+		return numAsteroids;
 	}
 }
 

@@ -33,6 +33,7 @@ void initialise_hardware(void);
 void splash_screen(void);
 void new_game(void);
 void handle_game_over(void);
+void game_pause_loop(void);
 
 /*
  * main -- Main program.
@@ -60,7 +61,7 @@ int main(void) {
 
 	/* Show the splash screen message. This returns when 
 	** message display is complete. */
-	splash_screen();
+	//splash_screen();
 	
 	/* Perform necessary initialisations for a new game. */
 	new_game();
