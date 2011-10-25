@@ -149,6 +149,49 @@ int main(void) {
 		if ((PINB & (1<<4)) == (1<<4)) {
 			show_high_score = 1;
 		}
+		
+		// Pause Game
+		if ((PIND & (1<<9)) == (1<<9)) {
+			while ((PIND & (1<<9)) == (1<<9)) { /* wait for button release */ }
+			game_pause_loop();
+		}
+	}
+}
+
+void game_pause_loop() {
+	uint32_t currentTime;
+	uint32_t displayLastUpdatedTime = 0;
+	uint32_t displayLastScrolledTime = 0;
+	
+	/* This is the text we'll scroll on the LED display. */
+	//set_display_text("Jake Schoermer s4233158 Sam Pengilly s42351382");
+	set_display_text("Paused");
+	
+	/* We scroll the message until the display is blank */
+	while(1) {
+		currentTime = get_clock_ticks();
+		
+		if(currentTime >= displayLastUpdatedTime + 2) {
+			/* Update LED display every 2ms - i.e. show a different row */
+			display_row();
+			displayLastUpdatedTime = currentTime;
+		}
+		
+		if(currentTime >= displayLastScrolledTime + 150) {
+			/* Scroll our message every 150ms. Exit the loop
+			 ** if finished.
+			 */
+			if(!scroll_display()) {
+				//break;
+			}
+			displayLastScrolledTime = currentTime;
+		}
+
+		// Unpause Game
+		if ((PIND & (1<<9)) == (1<<9)) {
+			while ((PIND & (1<<9)) == (1<<9)) { /* wait for button release */ }
+			break;
+		}
 	}
 }
 
