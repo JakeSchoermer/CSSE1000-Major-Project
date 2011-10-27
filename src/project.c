@@ -121,7 +121,7 @@ int main(void) {
 			lapse = 0;
 		}
 
-		if (lapse < 100) {
+		if (lapse > 100) {
 			if (direction == "L") {
 				gameFieldUpdated |= move_base(MOVE_LEFT);
 				lapse=0;	
