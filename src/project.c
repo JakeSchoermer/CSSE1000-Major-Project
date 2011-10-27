@@ -26,6 +26,7 @@ uint8_t show_high_score = 0;
 uint8_t seven_seg_data[10] = {63,6,91,79,102,109,125,7,127,111};
 uint8_t seven_seg_cat = 0; 
 int lapse;
+char direction='L'
 
 /*
 ** Function prototypes - these are defined below main()
@@ -109,21 +110,31 @@ int main(void) {
 			if(prevJoystickX >= 0 && joystickX < 0) {
 				/* Joystick has moved left */ 
 				gameFieldUpdated |= move_base(MOVE_LEFT);
+				direction = "L";
 			}
 			if(prevJoystickX <= 0 && joystickX > 0) {
 				gameFieldUpdated |= move_base(MOVE_RIGHT);
+				direction = "R";
 			}
 			/* Update our record of the previous Joystick value */
 			prevJoystickX = joystickX;
 			lapse = 0;
 		}
 
-		if (lapse == 1000) {
-			//gameFieldUpdated |= move_base(MOVE_RIGHT);	
+		if (lapse < 100) {
+			if (direction == "L") {
+				gameFieldUpdated |= move_base(MOVE_LEFT);
+				lapse=0;	
+			}
+			else if (direction == "R") {
+				gameFieldUpdated |= move_base(MOVE_RIGHT);
+				lapse = 0;
+			}
+			else {
+				direction = "";
+			}	
 		}
-		else {
-			lapse++;
-		}
+		lapse++;
 
 		if(prevJoystickButtons != joystickButtons) {
 			/* A joystick button has been pressed or released */
