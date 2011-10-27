@@ -364,7 +364,7 @@ void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 	remove_projectile(projectileIndex);
 	remove_asteroid(asteroidIndex);
 
-	replaceAsteroid();
+	//replaceAsteroid();
 	
 	// Increase Score
 	add_to_score(1);
@@ -388,7 +388,7 @@ void handleBaseCollision() {
 		add_to_score(-1);
 		outputHealth(health);
 		
-		replaceAsteroid();
+		//replaceAsteroid();
 	}
 }
 
@@ -397,29 +397,27 @@ void replaceAsteroid() {
 	uint8_t newX = 0;
 	uint8_t newY = 14;
 	
-	//numAsteroids++;
+	numAsteroids++;
 	
-	//if (!numAsteroids >= MAX_ASTEROIDS) {
-
+	if (numAsteroids < MAX_ASTEROIDS) {
 		// Find position that isn't occupied
-	//	do {
+		do {
 			newX = (uint8_t)(rand() % FIELD_WIDTH);
-			//newY = 13;
 			//newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
 		
-		//	asteroids[numAsteroids] = (newX<<4)|newY;	
-	//	} while (asteroid_at(newX, newY) != -1);
+			asteroids[numAsteroids] = (newX<<4)|newY;	
+		} while (asteroid_at(newX, newY) != -1);
 		//createAsteroid(newX, newY);
-	//}
+	}
 }
 
 int8_t createAsteroid(int8_t x, int8_t y) {
-	if (numAsteroids >= MAX_ASTEROIDS - 1) {
-		return -1;
-	} else {
-		asteroids[MAX_ASTEROIDS - 1] = (x << 4) | y;
-		return numAsteroids + 1;
-	}
+	//if (numAsteroids >= MAX_ASTEROIDS - 1) {
+	//	return -1;
+	//} else {
+	//	asteroids[MAX_ASTEROIDS - 1] = (x << 4) | y;
+	//	return numAsteroids + 1;
+	//}
 }
 
 /* Check whether there is an asteroid at a given position.
@@ -473,7 +471,7 @@ static void remove_asteroid(int8_t asteroidIndex) {
 	/* Last position in asteroids array is no longer used */
 	numAsteroids--;
 	
-	//replaceAsteroid();
+	replaceAsteroid();
 }
 
 /* Remove projectile with the given index number (from 0 to
