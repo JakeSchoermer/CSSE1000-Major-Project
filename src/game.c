@@ -435,7 +435,7 @@ void replaceAsteroid() {
 		//newY = 13;
 		//newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
 		
-		asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
+		asteroids[numAsteroids + 1] = (newX<<4)|newY;	
 	} while (asteroid_at(newX, newY) != -1);
 	numAsteroids++;
 	//createAsteroid(newX, newY);
