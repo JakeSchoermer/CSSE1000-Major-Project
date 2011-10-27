@@ -1,7 +1,6 @@
 #include "game.h"
 #include <stdlib.h>
 #include <avr/interrupt.h>
-#include "pmod.h"
 
 /* Inititalise PMOD on JH
 **		- Reset Button on Pin7 on DDRD (Maps to Button 0 on PMOD)
@@ -15,8 +14,6 @@ void init_pmod(void) {
 	
 
 	DDRB |= (0 << 4); //High Score Button
-
-	DDRD |= (0 << 9); //Pause Button
 	
 
 	/* LED PMOD */
@@ -32,23 +29,23 @@ void init_pmod(void) {
 void outputHealth(int health) {
 	switch (health) {
 		case 0:
-			PORTE = 0x00;
+			PORTE &= 0x0F;
 			break;
 		
 		case 1:
-			PORTE = (0xF0>>3);
+			PORTE &= 0x1F;
 			break;
 			
 		case 2:
-			PORTE = (0xF0>>2);
+			PORTE &= 0x2F;
 			break;
 			
 		case 3:
-			PORTE = (0xF0>>1) ;
+			PORTE &= 0x4F;
 			break;
 			
 		case 4:
-			PORTE = 0xF0;
+			PORTE &= 0x8F;
 			break;
 	}
 }

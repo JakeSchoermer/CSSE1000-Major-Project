@@ -8,7 +8,6 @@
 #include "game.h"
 #include "led_display.h"
 #include "score.h"
-#include "pmod.h"
 #include <stdlib.h>
 #include <avr/interrupt.h>
 /* Stdlib needed for rand() - random number generator */
@@ -88,6 +87,7 @@ void init_game_field(void) {
     basePosition = 3;
 	numProjectiles = 0;
 	numAsteroids = 0;
+	health = 4;
 
 	for(i=0; i < MAX_ASTEROIDS ; i++) {
 		/* Generate random position that does not already
@@ -110,8 +110,6 @@ void init_game_field(void) {
 		asteroids[i] = (x<<4)|y;
 		numAsteroids++;
 	}
-	health = 4;
-	outputHealth(health);
 }
 
 /* 
@@ -366,18 +364,14 @@ void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 void handleBaseCollision() {
 	int8_t asteroidIndex;
 	for(int x=basePosition - 1; x <= basePosition+1; x++) {
-		if(asteroidIndex == asteroid_at(x, 0)) {
+		if(asteroidIndex = asteroid_at(x, 0)) {
 			remove_asteroid(asteroidIndex);
 			// Decrement Lives
-			//health--;
-			//outputHealth(health);
 		}
 	}
-	if (asteroidIndex == asteroid_at(basePosition, 0)) {
+	if (asteroidIndex = asteroid_at(basePosition, 1)) {
 		remove_asteroid(asteroidIndex);
 		// Decrement Lives
-		//health--;
-		//outputHealth(health);
 	}
 }
 
