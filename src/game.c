@@ -370,22 +370,22 @@ void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 
 void handleBaseCollision() {
 	int8_t asteroidIndex;
-	/*for(int x=basePosition - 1; x <= basePosition+1; x++) {
-		if(asteroidIndex == asteroid_at(x, 0)) {
+	for(int x=basePosition - 1; x <= basePosition+1; x++) {
+		if(asteroidIndex = asteroid_at(x, 0)) {
 			remove_asteroid(asteroidIndex);
 			// Decrement Lives
 			health--;
 			add_to_score(-1);
 			outputHealth(health);
 		}
-	}*/
-	//if (asteroidIndex == asteroid_at(basePosition, 0)) {
-	//	remove_asteroid(asteroidIndex);
+	}
+	if (asteroidIndex = asteroid_at(basePosition, 0)) {
+		remove_asteroid(asteroidIndex);
 		// Decrement Lives
 		health--;
 		add_to_score(-1);
 		outputHealth(health);
-	//}
+	}
 }
 
 void replaceAsteroid() {
