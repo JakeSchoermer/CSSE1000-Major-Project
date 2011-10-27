@@ -5,7 +5,8 @@
 #include "score.h"
 #include "project.h"
 
-
+int pos = 1;
+int counter = 0;
 
 void init_sseg_score_display(void) {
 	
@@ -42,15 +43,33 @@ ISR(TIMER1_COMPA_vect) {
 		show = get_score();
 	}
 
-		/* Display a digit */ 
-    if(seven_seg_cat == 0) { 
-        /* Display rightmost digit*/ 
-        PORTF = seven_seg_data[show%10]; 
-    } else { 
-        /* Display leftmost digit*/ 
-        PORTF = seven_seg_data[show/10] | 0x80; 
-    } 
- 
+
+	//Show Scores Greater than 99;
+	counter ++; //Use to time scrolling
+	
+	if (counter == 10000) {
+		counter == 0; //reset counter;
+		//if (pos < show/10) {
+		//	pos++;
+		//}
+		//else {
+		///	pos = 1; //Reset Pos
+		//}
+	}
+	
+	
+	int leftIdx = show%(10^pos);
+	int rightIdx = pos/(10^pos);
+
+	/* Display a digit */ 
+	if(seven_seg_cat == 0) { 
+		/* Display rightmost digit*/ 
+		PORTF = seven_seg_data[leftIdx]; 
+	} else { 
+	    /* Display leftmost digit*/ 
+	    PORTF = seven_seg_data[rightIdx] | 0x80; 
+ 	}
+
     /* Change which digit will be displayed next - toggle 
     ** the least significant bit. 
     */ 
@@ -62,7 +81,6 @@ ISR(TIMER1_COMPA_vect) {
 	//Reset Score and Add 1 Health;
 
 	if (get_score() == 100) {
-		init_score();
 		if (getHealth < 4) {
 			setHealth(getHealth()+1);
 			outputHealth();

@@ -375,6 +375,7 @@ void handleBaseCollision() {
 			remove_asteroid(asteroidIndex);
 			// Decrement Lives
 			health--;
+			add_to_score(-1);
 			outputHealth(health);
 		}
 	}
@@ -382,6 +383,7 @@ void handleBaseCollision() {
 		remove_asteroid(asteroidIndex);
 		// Decrement Lives
 		health--;
+		add_to_score(-1);
 		outputHealth(health);
 	}
 }
