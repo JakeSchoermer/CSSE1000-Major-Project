@@ -409,7 +409,7 @@ int8_t createAsteroid(int8_t x, int8_t y) {
 	if (numAsteroids >= MAX_ASTEROIDS - 1) {
 		return -1;
 	} else {
-		asteroids[numAsteroids + 1] = (x << 4) | y;
+		asteroids[MAX_ASTEROIDS - 1] = (x << 4) | y;
 		return numAsteroids + 1;
 	}
 }
