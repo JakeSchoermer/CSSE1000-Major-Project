@@ -14,6 +14,11 @@ void init_score(void) {
 
 void add_to_score(uint16_t value) {
 	score += value;
+	
+	if (score <=0) {
+		score = 0;
+	}
+
 }
 
 uint16_t get_score(void) {
