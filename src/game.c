@@ -430,17 +430,21 @@ void replaceAsteroid() {
 	//Replacement Asteroids
 	uint8_t newX = 0;
 	uint8_t newY = 14;
-
-	// Find position that isn't occupied
-	do {
-		newX = (uint8_t)(rand() % FIELD_WIDTH);
-		//newY = 13;
-		//newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
-		
-		asteroids[numAsteroids + 1] = (newX<<4)|newY;	
-	} while (asteroid_at(newX, newY) != -1);
+	
 	numAsteroids++;
-	//createAsteroid(newX, newY);
+	
+	if (!numAsteroids >= MAX_ASTEROIDS) {
+
+		// Find position that isn't occupied
+		do {
+			newX = (uint8_t)(rand() % FIELD_WIDTH);
+			//newY = 13;
+			//newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
+		
+			asteroids[numAsteroids] = (newX<<4)|newY;	
+		} while (asteroid_at(newX, newY) != -1);
+		//createAsteroid(newX, newY);
+	}
 }
 
 int8_t createAsteroid(int8_t x, int8_t y) {
