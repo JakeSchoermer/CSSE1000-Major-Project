@@ -71,7 +71,7 @@ static void remove_projectile(int8_t projectileIndex);
 */
 void decrementHealth();
 void handleCollision(int8_t projectileIndex, int8_t asteroidIndex);
-void handleBaseCollision(void);
+void handleBaseCollision(int8_t);
 void replaceAsteroid();
 int8_t createAsteroid(int8_t x, int8_t y);
 
