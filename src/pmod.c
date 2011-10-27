@@ -14,6 +14,8 @@ void init_pmod(void) {
 	
 
 	DDRB |= (0 << 4); //High Score Button
+
+	DDRD | = (0 << 9); //Pause Button
 	
 
 	/* LED PMOD */
