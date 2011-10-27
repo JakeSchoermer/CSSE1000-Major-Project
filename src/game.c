@@ -414,7 +414,7 @@ void handleBaseCollision() {
 		health--;
 		
 		if (health <= 0) {
-			//gameOver();
+			gameOver();
 		}
 		
 		add_to_score(-1);
@@ -432,8 +432,8 @@ void replaceAsteroid() {
 	// Find position that isn't occupied
 	do {
 		newX = (uint8_t)(rand() % FIELD_WIDTH);
-		//newY = 14;
-		newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
+		newY = 14;
+		//newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
 		
 		asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
 	} while (asteroid_at(newX, newY) != -1);
