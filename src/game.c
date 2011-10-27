@@ -349,6 +349,11 @@ int getHealth() {
 	return health;
 }
 
+void setHealth(newHealth) {
+	health = newHealth;
+}
+
+
 
 /******** INTERNAL FUNCTIONS ****************/
 
@@ -369,15 +374,15 @@ void handleBaseCollision() {
 		if(asteroidIndex == asteroid_at(x, 0)) {
 			remove_asteroid(asteroidIndex);
 			// Decrement Lives
-			//health--;
-			//outputHealth(health);
+			health--;
+			outputHealth(health);
 		}
 	}
 	if (asteroidIndex == asteroid_at(basePosition, 0)) {
 		remove_asteroid(asteroidIndex);
 		// Decrement Lives
-		//health--;
-		//outputHealth(health);
+		health--;
+		outputHealth(health);
 	}
 }
 

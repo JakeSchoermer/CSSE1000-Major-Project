@@ -57,5 +57,16 @@ ISR(TIMER1_COMPA_vect) {
     seven_seg_cat ^= (1 << 0);			
 
 	show_high_score = 0;
+	
+
+	//Reset Score and Add 1 Health;
+
+	if (get_score() == 100) {
+		init_score();
+		if (getHealth < 4) {
+			setHealth(getHealth()+1);
+			outputHealth();
+		}
+	}
 
 }

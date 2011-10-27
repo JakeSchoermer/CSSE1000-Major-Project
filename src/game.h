@@ -61,6 +61,7 @@ int8_t advance_asteroids(void);
 
 int getAsteroidFallInterval();
 int getHealth();
+void setHealth(int);
 
 /* 
 ** Attempt to move the base station to the left or the right. Returns
