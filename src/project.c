@@ -123,10 +123,7 @@ int main(void) {
 		//Check if Joystick is same
 		else if (prevJoystickX == joystickX) {
 			if (direction = "L") {
-				wait_seconds(1);
 				gameFieldUpdated |= move_base(MOVE_LEFT);
-			}
-			else if (direction = "R") {
 			}	
 		}
 
