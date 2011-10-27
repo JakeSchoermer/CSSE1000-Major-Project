@@ -119,9 +119,9 @@
 		</tr>
 		<tr>
 			<th>Joystick Auto Repeat</th>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th>Sound Effects</th>
