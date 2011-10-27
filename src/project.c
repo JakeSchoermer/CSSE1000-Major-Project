@@ -102,7 +102,6 @@ int main(void) {
 			joystick_update();
 			joystickLastCheckedTime = currentTime;
 		}
-
 		if(prevJoystickX != joystickX) {
 			/* Joystick has moved left or right */
 			if(prevJoystickX >= 0 && joystickX < 0) {
@@ -112,9 +111,9 @@ int main(void) {
 			if(prevJoystickX <= 0 && joystickX > 0) {
 				gameFieldUpdated |= move_base(MOVE_RIGHT);
 			}
+			/* Update our record of the previous Joystick value */
+			prevJoystickX = joystickX;
 		}
-
-
 
 		if(prevJoystickButtons != joystickButtons) {
 			/* A joystick button has been pressed or released */
