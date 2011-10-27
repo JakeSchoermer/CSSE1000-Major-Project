@@ -396,10 +396,10 @@ void replaceAsteroid() {
 		//newY = 14;
 		newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
 		
-		//asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
+		asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
 	} while (asteroid_at(newX, newY) != -1);
 
-	createAsteroid(newX, newY);
+	//createAsteroid(newX, newY);
 }
 
 int8_t createAsteroid(int8_t x, int8_t y) {
