@@ -71,7 +71,7 @@ static void remove_projectile(int8_t projectileIndex);
 */
 void decrementHealth();
 void handleCollision(int8_t projectileIndex, int8_t asteroidIndex);
-void handleBaseCollision(int8_t);
+void handleBaseCollision();
 void replaceAsteroid();
 int8_t createAsteroid(int8_t x, int8_t y);
 
@@ -301,9 +301,6 @@ int8_t advance_asteroids(void) {
 			// Advance the asteroid downwards
 			y--;
 			
-			// Handle Collisions between base station and asteroids
-			handleBaseCollision(asteroidIndex);
-			
 			// Handle collisions between projectiles and asteroids
 			// If collision occurs, remove both and continue to the next projectile
 			int8_t projectileIndex;
@@ -333,6 +330,9 @@ int8_t advance_asteroids(void) {
 			replaceAsteroid();
 		}
 	}
+	
+	// Handle Collisions between base station and asteroids
+	handleBaseCollision();
 	
 	return asteroidsMoved;
 }
@@ -368,17 +368,21 @@ void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 	replaceAsteroid();
 }
 
-void handleBaseCollision(int8_t asteroidIndex) {
-	for(int x=basePosition - 1; x <= basePosition+1; x++) {
-		if(asteroidIndex == asteroid_at(x, 0)) {
-			remove_asteroid(asteroidIndex);
+void handleBaseCollision() {
+	int8_t asteroidIndex;
+	//for(int x=basePosition - 1; x <= basePosition+1; x++) {
+	//	if(asteroidIndex == asteroid_at(x, 0)) {
+	//		remove_asteroid(asteroidIndex);
 			// Decrement Lives
-			health--;
-			add_to_score(-1);
-			outputHealth(health);
-		}
-	}
-	if (asteroidIndex == asteroid_at(basePosition, 0)) {
+	//		health--;
+	//		add_to_score(-1);
+	//		outputHealth(health);
+	//	}
+	//}
+	if ((asteroidIndex = asteroid_at(basePosition, 0)) != -1 ||
+		(asteroidIndex = asteroid_at(basePosition - 1, 0)) != -1 ||
+		(asteroidIndex = asteroid_at(basePosition + 1, 0)) != -1 ||
+		(asteroidIndex = asteroid_at(basePosition, 1)) != -1) {
 		remove_asteroid(asteroidIndex);
 		// Decrement Lives
 		health--;
