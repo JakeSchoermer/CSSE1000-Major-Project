@@ -327,7 +327,7 @@ int8_t advance_asteroids(void) {
 			// Asteroid reached bottom, remove it
 			remove_asteroid(asteroidIndex);
 			
-			replaceAsteroid();
+			//replaceAsteroid();
 		}
 	}
 	
@@ -364,21 +364,11 @@ void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 
 	// Increase Score
 	add_to_score(1);
-
-	replaceAsteroid();
 }
 
 void handleBaseCollision() {
 	int8_t asteroidIndex;
-	//for(int x=basePosition - 1; x <= basePosition+1; x++) {
-	//	if(asteroidIndex == asteroid_at(x, 0)) {
-	//		remove_asteroid(asteroidIndex);
-			// Decrement Lives
-	//		health--;
-	//		add_to_score(-1);
-	//		outputHealth(health);
-	//	}
-	//}
+	
 	if ((asteroidIndex = asteroid_at(basePosition, 0)) != -1 ||
 		(asteroidIndex = asteroid_at(basePosition - 1, 0)) != -1 ||
 		(asteroidIndex = asteroid_at(basePosition + 1, 0)) != -1 ||
@@ -388,6 +378,8 @@ void handleBaseCollision() {
 		health--;
 		add_to_score(-1);
 		outputHealth(health);
+		
+		//replaceAsteroid();
 	}
 }
 
@@ -467,6 +459,8 @@ static void remove_asteroid(int8_t asteroidIndex) {
 	}
 	/* Last position in asteroids array is no longer used */
 	numAsteroids--;
+	
+	replaceAsteroid();
 }
 
 /* Remove projectile with the given index number (from 0 to
