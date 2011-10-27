@@ -427,17 +427,17 @@ void handleBaseCollision() {
 void replaceAsteroid() {
 	//Replacement Asteroids
 	uint8_t newX = 0;
-	uint8_t newY = 0;
+	uint8_t newY = 13;
 
 	// Find position that isn't occupied
 	do {
 		newX = (uint8_t)(rand() % FIELD_WIDTH);
-		newY = 14;
+		//newY = 13;
 		//newY = (uint8_t)(3 + (rand() % (FIELD_HEIGHT-3)));
 		
 		asteroids[MAX_ASTEROIDS-1] = (newX<<4)|newY;	
 	} while (asteroid_at(newX, newY) != -1);
-
+	numAsteroids++;
 	//createAsteroid(newX, newY);
 }
 
