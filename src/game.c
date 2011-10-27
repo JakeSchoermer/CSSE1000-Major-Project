@@ -302,7 +302,7 @@ int8_t advance_asteroids(void) {
 			y--;
 			
 			// Handle Collisions between base station and asteroids
-			handleBaseCollision();
+			handleBaseCollision(asteroidIndex);
 			
 			// Handle collisions between projectiles and asteroids
 			// If collision occurs, remove both and continue to the next projectile
@@ -368,10 +368,9 @@ void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 	replaceAsteroid();
 }
 
-void handleBaseCollision() {
-	int8_t asteroidIndex;
+void handleBaseCollision(int8_t asteroidIndex) {
 	for(int x=basePosition - 1; x <= basePosition+1; x++) {
-		if(asteroidIndex = asteroid_at(x, 0)) {
+		if(asteroidIndex == asteroid_at(x, 0)) {
 			remove_asteroid(asteroidIndex);
 			// Decrement Lives
 			health--;
@@ -379,7 +378,7 @@ void handleBaseCollision() {
 			outputHealth(health);
 		}
 	}
-	if (asteroidIndex = asteroid_at(basePosition, 0)) {
+	if (asteroidIndex == asteroid_at(basePosition, 0)) {
 		remove_asteroid(asteroidIndex);
 		// Decrement Lives
 		health--;
