@@ -15,6 +15,7 @@
 #include "scrolling_char_display.h"
 #include "sseg_display.h"
 #include "pmod.h"
+#include "sfx.h"
 
 
 
@@ -271,10 +272,15 @@ void initialise_hardware(void) {
 	
 	
 	/* Inititalise PMOD on JF
-	**		- Reset Button on Pin6
 	*/
 	
 	init_pmod();
+
+
+	/* Initialuse Speaker om JE
+	*/
+
+	init_sfx();
 
 	/*
 	** Turn on interrupts (needed for timer to work)
