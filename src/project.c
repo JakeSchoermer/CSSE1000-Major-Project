@@ -109,17 +109,25 @@ int main(void) {
 			if(prevJoystickX >= 0 && joystickX < 0) {
 				/* Joystick has moved left */ 
 				gameFieldUpdated |= move_base(MOVE_LEFT);
+				direction = "L";
 
 			}
 			if(prevJoystickX <= 0 && joystickX > 0) {
 				gameFieldUpdated |= move_base(MOVE_RIGHT);
+				direction = "R";
 			}
 			/* Update our record of the previous Joystick value */
 			prevJoystickX = joystickX;
 		}
-
+		
+		//Check if Joystick is same
 		else if (prevJoystickX == joystickX) {
-			
+			if (direction = "L") {
+				wait_seconds(1);
+				gameFieldUpdated |= move_base(MOVE_LEFT);
+			}
+			else if (direction = "R") {
+			}	
 		}
 
 		if(prevJoystickButtons != joystickButtons) {
