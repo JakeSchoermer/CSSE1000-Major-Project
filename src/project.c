@@ -25,6 +25,7 @@ uint8_t show_high_score = 0;
 
 uint8_t seven_seg_data[10] = {63,6,91,79,102,109,125,7,127,111};
 uint8_t seven_seg_cat = 0; 
+int lapse;
 
 /*
 ** Function prototypes - these are defined below main()
@@ -114,6 +115,14 @@ int main(void) {
 			}
 			/* Update our record of the previous Joystick value */
 			prevJoystickX = joystickX;
+			lapse = 0;
+		}
+
+		if (lapse == 1000) {
+			//gameFieldUpdated |= move_base(MOVE_RIGHT);	
+		}
+		else {
+			lapse++;
 		}
 
 		if(prevJoystickButtons != joystickButtons) {

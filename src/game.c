@@ -410,7 +410,7 @@ void replaceAsteroid() {
 		//	asteroids[numAsteroids] = (newX<<4)|newY;	
 	//	} while (asteroid_at(newX, newY) != -1);
 		//createAsteroid(newX, newY);
-	}
+	//}
 }
 
 int8_t createAsteroid(int8_t x, int8_t y) {
