@@ -84,8 +84,8 @@
 		<tr>
 			<th>Base Station Hit Detection</th>
 			<td>X</td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th>Acceleration</th>
@@ -96,8 +96,8 @@
 		<tr>
 			<th>Health Bar</th>
 			<td>X</td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th COLSPAN='4'>Level 2 (Group Feature)<th>
