@@ -34,6 +34,7 @@ void splash_screen(void);
 void new_game(void);
 void handle_game_over(void);
 void game_pause_loop(void);
+void wait_seconds(int);
 
 /*
  * main -- Main program.
@@ -273,3 +274,16 @@ void new_game(void)
 	copy_game_field_to_led_display();
 	init_score();
 }
+
+
+/************* Internal Functions added by Jake ****************************/
+
+void wait_seconds (seconds) {
+	/* We use inline assembly language */
+
+	for (int i = 0; i <1000*seconds; i++) {
+		asm("nop\r\n" "nop\r\n" "nop\r\n" "nop\r\n"::);
+	}
+}
+
+
