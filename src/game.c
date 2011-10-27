@@ -194,11 +194,13 @@ int8_t move_base(int8_t direction) {
 
 	if (basePosition > 0 && direction == MOVE_LEFT) {
 		basePosition--;
+		handleBaseCollision();
 		return 1;
 	}
 
 	else if (basePosition <6 && direction == MOVE_RIGHT) {
 		basePosition++;
+		handleBaseCollision();
 		return 1;
 	}
 
