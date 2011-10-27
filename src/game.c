@@ -69,7 +69,6 @@ static void remove_projectile(int8_t projectileIndex);
 /*
 ** Asteroid / Projectile Maintenance Functions
 */
-void gameOver();
 void decrementHealth();
 void handleCollision(int8_t projectileIndex, int8_t asteroidIndex);
 void handleBaseCollision();
@@ -359,39 +358,6 @@ void setHealth(newHealth) {
 
 
 /******** INTERNAL FUNCTIONS ****************/
-
-void gameOver() {
-	uint32_t currentTime;
-	uint32_t displayLastUpdatedTime = 0;
-	uint32_t displayLastScrolledTime = 0;
-	
-	/* This is the text we'll scroll on the LED display. */
-	//set_display_text("Jake Schoermer s4233158 Sam Pengilly s42351382");
-	set_display_text("GAME OVER");
-	
-	/* We scroll the message until the display is blank */
-	while(1) {
-		currentTime = get_clock_ticks();
-		
-		if(currentTime >= displayLastUpdatedTime + 2) {
-			/* Update LED display every 2ms - i.e. show a different row */
-			display_row();
-			displayLastUpdatedTime = currentTime;
-		}
-		
-		if(currentTime >= displayLastScrolledTime + 150) {
-			/* Scroll our message every 150ms. Exit the loop
-			 ** if finished.
-			 */
-			if(!scroll_display()) {
-				break;
-			}
-			displayLastScrolledTime = currentTime;
-		}
-	}	
-	
-	new_game();
-}
 
 void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 	// Remove colliding objects

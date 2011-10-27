@@ -33,6 +33,7 @@ void initialise_hardware(void);
 void splash_screen(void);
 void new_game(void);
 void handle_game_over(void);
+void gameOver(void);
 void game_pause_loop(void);
 void wait_seconds(int);
 
@@ -131,7 +132,11 @@ int main(void) {
 			copy_game_field_to_led_display();
 			
 			// Update Health Output
-			outputHealth(getHealth());
+			if (getHealth() <= 0) {
+				gameOver();
+			} else {
+				outputHealth(getHealth());
+			}
 			
 			gameFieldUpdated = 0;
 		}
@@ -158,6 +163,39 @@ int main(void) {
 			game_pause_loop();
 		}
 	}
+}
+
+void gameOver() {
+	uint32_t currentTime;
+	uint32_t displayLastUpdatedTime = 0;
+	uint32_t displayLastScrolledTime = 0;
+	
+	/* This is the text we'll scroll on the LED display. */
+	//set_display_text("Jake Schoermer s4233158 Sam Pengilly s42351382");
+	set_display_text("GAME OVER");
+	
+	/* We scroll the message until the display is blank */
+	while(1) {
+		currentTime = get_clock_ticks();
+		
+		if(currentTime >= displayLastUpdatedTime + 2) {
+			/* Update LED display every 2ms - i.e. show a different row */
+			display_row();
+			displayLastUpdatedTime = currentTime;
+		}
+		
+		if(currentTime >= displayLastScrolledTime + 150) {
+			/* Scroll our message every 150ms. Exit the loop
+			 ** if finished.
+			 */
+			if(!scroll_display()) {
+				break;
+			}
+			displayLastScrolledTime = currentTime;
+		}
+	}	
+	
+	new_game();
 }
 
 void game_pause_loop() {
