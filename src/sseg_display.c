@@ -58,4 +58,11 @@ ISR(TIMER1_COMPA_vect) {
 
 	show_high_score = 0;
 
+	//Update Health if Score reaches 100.
+	if (get_score() == 100) {
+		init_score(); //reset score to 0;
+		//if (health
+	}
+
+
 }

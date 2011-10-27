@@ -171,4 +171,4 @@ Additional Comments:
 
 Asteroids falling but not replacing.
 Base Collision - Doesn't remove asteroids
-Health Bar - Jumps to zero on update - I think that this is bacause the output cases are not set correctly.
+Health Bar - Jumps to zero on update. I think this is fixed now, need to test.
