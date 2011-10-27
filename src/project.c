@@ -37,7 +37,6 @@ void new_game(void);
 void handle_game_over(void);
 void gameOver(void);
 void game_pause_loop(void);
-void wait_seconds(int);
 
 /*
  * main -- Main program.
@@ -111,11 +110,11 @@ int main(void) {
 			if(joystickX < 0) {
 				/* Joystick has moved left */ 
 				gameFieldUpdated |= move_base(MOVE_LEFT);
-				direction = "L";
+				direction = 'L';
 			}
 			if(joystickX > 0) {
 				gameFieldUpdated |= move_base(MOVE_RIGHT);
-				direction = "R";
+				direction = 'R';
 			}
 			/* Update our record of the previous Joystick value */
 			prevJoystickX = joystickX;
@@ -171,8 +170,8 @@ int main(void) {
 		}
 		
 		// Pause Game
-		if ((PIND & (1<<9)) == (1<<9)) {
-			while ((PIND & (1<<9)) == (1<<9)) { /* wait for button release */ }
+		if ((PIND & (1<<5)) == (1<<5)) {
+			while ((PIND & (1<<5)) == (1<<5)) { /* wait for button release */ }
 			game_pause_loop();
 		}
 	}
@@ -241,8 +240,8 @@ void game_pause_loop() {
 		}
 
 		// Unpause Game
-		if ((PIND & (1<<9)) == (1<<9)) {
-			while ((PIND & (1<<9)) == (1<<9)) { /* wait for button release */ }
+		if ((PIND & (1<<5)) == (1<<5)) {
+			while ((PIND & (1<<5)) == (1<<5)) { /* wait for button release */ }
 			break;
 		}
 	}
@@ -325,16 +324,4 @@ void new_game(void)
 	copy_game_field_to_led_display();
 	init_score();
 }
-
-
-/************* Internal Functions added by Jake ****************************/
-
-void wait_seconds (seconds) {
-	/* We use inline assembly language */
-
-	for (int i = 0; i <1000*seconds; i++) {
-		asm("nop\r\n" "nop\r\n" "nop\r\n" "nop\r\n"::);
-	}
-}
-
 

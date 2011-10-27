@@ -105,8 +105,8 @@
 		<tr>
 			<th>Game Pause</th>
 			<td>X</td>
-			<td></td>
-			<td></td>
+			<td>X</td>
+			<td>X</td>
 		</tr>
 		<tr>
 			<th>Scoring #2</th>
@@ -171,6 +171,6 @@ Additional Comments:
 
 Base Collision not Working: Therefore cascading errors (i.e. features relying on that are broken).
 
-Asteroids falling but not replacing.
-Base Collision - Doesn't remove asteroids
-Health Bar - Jumps to zero on update - I think that this is bacause the output cases are not set correctly.
+Asteroids Replacing But Buggy
+
+Scoring#2 Working but needs further testing.
