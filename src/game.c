@@ -398,6 +398,8 @@ void handleCollision(int8_t projectileIndex, int8_t asteroidIndex) {
 	remove_projectile(projectileIndex);
 	remove_asteroid(asteroidIndex);
 
+	replaceAsteroid();
+	
 	// Increase Score
 	add_to_score(1);
 }
@@ -420,14 +422,14 @@ void handleBaseCollision() {
 		add_to_score(-1);
 		outputHealth(health);
 		
-		//replaceAsteroid();
+		replaceAsteroid();
 	}
 }
 
 void replaceAsteroid() {
 	//Replacement Asteroids
 	uint8_t newX = 0;
-	uint8_t newY = 13;
+	uint8_t newY = 14;
 
 	// Find position that isn't occupied
 	do {
@@ -501,7 +503,7 @@ static void remove_asteroid(int8_t asteroidIndex) {
 	/* Last position in asteroids array is no longer used */
 	numAsteroids--;
 	
-	replaceAsteroid();
+	//replaceAsteroid();
 }
 
 /* Remove projectile with the given index number (from 0 to
