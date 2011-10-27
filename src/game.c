@@ -414,7 +414,7 @@ void handleBaseCollision() {
 		health--;
 		
 		if (health <= 0) {
-			gameOver();
+			//gameOver();
 		}
 		
 		add_to_score(-1);
