@@ -397,7 +397,7 @@ void replaceAsteroid() {
 	uint8_t newX = 0;
 	uint8_t newY = 14;
 	
-	numAsteroids++;
+	numAsteroids;
 	
 	if (numAsteroids < MAX_ASTEROIDS) {
 		// Find position that isn't occupied
@@ -408,16 +408,8 @@ void replaceAsteroid() {
 			asteroids[numAsteroids] = (newX<<4)|newY;	
 		} while (asteroid_at(newX, newY) != -1);
 		//createAsteroid(newX, newY);
+		numAsteroids++;
 	}
-}
-
-int8_t createAsteroid(int8_t x, int8_t y) {
-	//if (numAsteroids >= MAX_ASTEROIDS - 1) {
-	//	return -1;
-	//} else {
-	//	asteroids[MAX_ASTEROIDS - 1] = (x << 4) | y;
-	//	return numAsteroids + 1;
-	//}
 }
 
 /* Check whether there is an asteroid at a given position.
