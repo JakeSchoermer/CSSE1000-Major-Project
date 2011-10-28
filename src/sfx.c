@@ -20,7 +20,7 @@ void init_sfx(void) {
 	DDRB |= (1<<6);
 
 	//Setup Timer
-	OCR1C = 9999;
+	OCR1C = 1;
     TCCR3A = 0x00; 
     TCCR3B = 0xA;
 

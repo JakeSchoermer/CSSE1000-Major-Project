@@ -42,24 +42,10 @@ ISR(TIMER1_COMPA_vect) {
 	else {
 		show = get_score();
 	}
-
-
-	//Show Scores Greater than 99;
-	counter ++; //Use to time scrolling
-	
-	if (counter == 10000) {
-		counter == 0; //reset counter;
-		//if (pos < show/10) {
-		//	pos++;
-		//}
-		//else {
-		///	pos = 1; //Reset Pos
-		//}
-	}
 	
 	
-	int leftIdx = show%(10^pos);
-	int rightIdx = pos/(10^pos);
+	int leftIdx = show%10;
+	int rightIdx = show/10;
 
 	/* Display a digit */ 
 	if(seven_seg_cat == 0) { 
