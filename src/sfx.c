@@ -20,7 +20,7 @@ void init_sfx(void) {
 	DDRB |= (1<<6);
 
 	//Setup Timer
-	OCR1C = 9999; 
+	OCR1C = 9999;
     TCCR3A = 0x00; 
     TCCR3B = 0xA;
 
@@ -28,8 +28,9 @@ void init_sfx(void) {
 
 ISR(TIMER3_COMPA_vect) {
 
-	PORTD ^ (1<<6);
-	PORTB ^ (1<<5); 
-	PORTD ^ (1<<4);
-	PORTB ^ (1<<6);
+	PORTD = PORTD ^ (1<<6);
+	PORTB = PORTB ^ (1<<5); 
+	PORTD = PORTD ^ (1<<4);
+	PORTB = PORTB ^ (1<<6);
+
 }

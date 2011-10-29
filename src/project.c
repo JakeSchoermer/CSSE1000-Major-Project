@@ -65,7 +65,7 @@ int main(void) {
 
 	/* Show the splash screen message. This returns when 
 	** message display is complete. */
-	//splash_screen();
+	splash_screen();
 	
 	/* Perform necessary initialisations for a new game. */
 	new_game();
@@ -184,7 +184,6 @@ void gameOver() {
 	uint32_t displayLastScrolledTime = 0;
 	
 	/* This is the text we'll scroll on the LED display. */
-	//set_display_text("Jake Schoermer s4233158 Sam Pengilly s42351382");
 	set_display_text("GAME OVER");
 	
 	/* We scroll the message until the display is blank */
