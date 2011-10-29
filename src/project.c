@@ -106,7 +106,7 @@ int main(void) {
 			joystickLastCheckedTime = currentTime;
 		}
 		
-		if (lapse > 20000) {
+		if (lapse > 10000) {
 			/* Joystick has moved left or right */	
 			if(joystickX < 0) {
 				/* Joystick has moved left */ 
