@@ -65,7 +65,7 @@ int main(void) {
 
 	/* Show the splash screen message. This returns when 
 	** message display is complete. */
-	//splash_screen();
+	splash_screen();
 	
 	/* Perform necessary initialisations for a new game. */
 	new_game();
